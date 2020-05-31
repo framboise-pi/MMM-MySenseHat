@@ -2,7 +2,7 @@
 Magic Mirror Raspberry Pi Sense Hat Module
 
 # Installation
-Check Wiki
+Check <a href="https://github.com/framboise-pi/MMM-MySenseHat/wiki">Wiki</a>
 
 # Screenshots
 <a href="https://ibb.co/JcQVydY"><img src="https://i.ibb.co/x2HWfsn/MMM-My-Sense-Hat-01.png" alt="MMM-My-Sense-Hat-01" border="0"></a>
