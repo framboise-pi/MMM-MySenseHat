@@ -1,0 +1,29 @@
+{
+  "name": "mmm-mysensehat",
+  "version": "0.0.1",
+  "description": "MagicMirror2 Raspberry Sense Hat module",
+  "main": "MMM-MySenseHat.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/framboise-pi/MMM-MysenseHat.git"
+  },
+  "keywords": [
+    "MMM",
+    "MagicMirror",
+    "MagicMirror2",
+    "Raspberry",
+    "SenseHat"
+  ],
+  "author": "Cedric Camille Lafontaine",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/framboise-pi/MMM-MysenseHat/issues"
+  },
+  "homepage": "https://github.com/framboise-pi/MMM-MysenseHat#readme",
+  "dependencies": {
+    "node-sense-hat": "^0.0.2"
+  },
+  "devDependencies": {
+    "electron-rebuild": "^1.11.0"
+  }
+}
