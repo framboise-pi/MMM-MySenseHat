@@ -13,6 +13,8 @@ Magic Mirror Raspberry Pi Sense Hat Module
 # Screenshots
 <a href="https://ibb.co/JcQVydY"><img src="https://i.ibb.co/x2HWfsn/MMM-My-Sense-Hat-01.png" alt="MMM-My-Sense-Hat-01" border="0"></a>
 
+<a href="https://ibb.co/8YZgypY"><img src="https://i.ibb.co/Dr2fByr/MMM-My-Sense-Hat-02.png" alt="MMM-My-Sense-Hat-02" border="0"></a>
+
 # Java librairies used for sensehat
 Use of https://github.com.cnpmjs.org/aonghusonia/sense-hat-led
 (Node module to control the Raspberry Pi Sense HAT 8x8 RGB LED matrix using javascript)
