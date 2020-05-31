@@ -12,7 +12,7 @@ On this module, ideas are :
 * random PixelArt on sensehat LED
 * Use of joystick and sensors to interact with other modules. Or else.
 * Notifications - icons (gmail etc.)
-Started in May 2020.
+<p><sup>Started in May 2020.</sup></p>
 
 # Screenshots
 <a href="https://ibb.co/JcQVydY"><img src="https://i.ibb.co/x2HWfsn/MMM-My-Sense-Hat-01.png" alt="MMM-My-Sense-Hat-01" border="0">VNC screeshot</a>
