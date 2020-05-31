@@ -1,0 +1,30 @@
+.MMM-MySenseHat div.container {
+    margin: 0px;
+    padding: 0px;
+}
+
+.MMM-MySenseHat p.bottom {
+    margin: 0px;
+    padding: 0px;
+    font-size: 40%;
+    line-height: 100%;
+    float: right;
+    clear:right;
+}
+
+.MMM-MySenseHat div.right {
+    float: right;
+    padding-left:10px;
+}
+
+.MMM-MySenseHat div.line {
+    padding-left:10px;
+    text-align: right;
+    clear: right;
+}
+
+.MMM-MySenseHat div sup {
+    vertical-align: super;
+    font-size: 40%;
+    padding-right: 10px;
+}
