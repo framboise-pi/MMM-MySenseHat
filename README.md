@@ -24,12 +24,12 @@ On this module :
 * at start of MagicMirror a message displayed on SenseHat LED 
 * Sensors values displayed on a Magic Mirror module
 * on interval, random PixelArt on sensehat LED
- - little monsters (1 for the moment)
- - animations (not implemented yet)
- - all LEDs on a color base on SenseHat temperature sensor
- - a clock
-* Use of joystick and sensors to interact with other modules. Or else.(not implemented yet)
-* Notifications - icons (gmail etc.)(not implemented yet)
+ - 8x8 pixels little monsters (1 for the moment)
+ - 8x8 pixels animations (-not implemented yet-)
+ - all LEDs on a color base on SenseHat temperature sensor (-not implemented yet-)
+ - a clock (-not implemented yet-)
+* Use of joystick and sensors to interact with other modules. Or else.(-not implemented yet-)
+* Notifications - icons (gmail etc.)(-not implemented yet-)
 <p><sup>Started in May 2020.</sup></p>
 
 # And ?
