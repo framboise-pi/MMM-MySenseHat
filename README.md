@@ -4,6 +4,20 @@ Magic Mirror Raspberry Pi Sense Hat Module
 # Installation
 Check <a href="https://github.com/framboise-pi/MMM-MySenseHat/wiki">Wiki</a>
 
+<p>Run these commands at your Magic Mirror root directory.</p>
+
+<div><code>
+  cd modules
+  git clone https://github.com/framboise-pi/MMM-MySenseHat
+
+</code></div>
+
+This command with MMM-MySenseHat folder
+<code>npm install</code>
+
+
+----------------------------------------------------
+
 # What ?
 I didn't find any sensehat module for the wonderful MagicMirror so I'm trying to make one.
 Using java librairies. And I started a MagicMirror in python in parallel, to use only python with sensehat and else.
