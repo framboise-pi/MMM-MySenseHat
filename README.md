@@ -35,7 +35,7 @@ On this module, ideas are :
 <a href="https://ibb.co/8YZgypY"><img src="https://i.ibb.co/Dr2fByr/MMM-My-Sense-Hat-02.png" alt="MMM-My-Sense-Hat-02" border="0"></a>
 
 # Now
-This is maintained (more precisely, its in dev)
+This is maintained (more precisely, its in dev. Some functionnalities are not yet implemented and some will be improved in future)
 
 # Thanks
 To all Magic Mirror community and to MichMich.
