@@ -34,6 +34,13 @@ On this module, ideas are :
 <p>Hello World ! - module at 'middle_center' position</p>
 <a href="https://ibb.co/8YZgypY"><img src="https://i.ibb.co/Dr2fByr/MMM-My-Sense-Hat-02.png" alt="MMM-My-Sense-Hat-02" border="0"></a>
 
+# Now
+This is maintained (more precisely, its in dev)
+
+# Thanks
+To all Magic Mirror community and to MichMich.
+This is how all mirrors should work in 2020.
+
 -------------------------------------
 ### Give support ! ( a chocolat viennois break | help me get sensors and Raspberry hardware)
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E79JA29LBLTAE&source=url)
