@@ -7,18 +7,18 @@ Check <a href="https://github.com/framboise-pi/MMM-MySenseHat/wiki">Wiki</a>
 <p>Run these commands at your Magic Mirror root directory.</p>
 
 <div>
- <code>cd ~/MagicMirror/modules
- git clone https://github.com/framboise-pi/MMM-MySenseHat</code>
+ <code><p>cd ~/MagicMirror/modules</p>
+<p> git clone https://github.com/framboise-pi/MMM-MySenseHat</p></code>
 </div>
 <div>
- <p>This command with MMM-MySenseHat folder</p>
+ <p>This command with MMM-MySenseHat folder (this will install dependencies)</p>
 <code>npm install</code>
 </div>
 
 ----------------------------------------------------
 
 # What ?
-I didn't find any sensehat module for the wonderful MagicMirror so I'm trying to make one.
+<div>I didn't find any sensehat module for the wonderful MagicMirror so I'm trying to make one.
 Using java librairies. And I started a MagicMirror in python in parallel, to use only python with sensehat and else.
 On this module :
 * at start of MagicMirror a message displayed on SenseHat LED 
@@ -30,6 +30,7 @@ On this module :
  - a clock (-not implemented yet-)
 * Use of joystick and sensors to interact with other modules. Or else.(-not implemented yet-)
 * Notifications - icons (gmail etc.)(-not implemented yet-)
+</div>
 Check <a href="https://github.com/framboise-pi/MMM-MySenseHat/issues">issues</a>, I write there the ideas I will implement in future.
 
 <p><sup>Started in May 2020.</sup></p>
