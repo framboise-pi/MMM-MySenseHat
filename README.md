@@ -30,6 +30,8 @@ On this module :
  - a clock (-not implemented yet-)
 * Use of joystick and sensors to interact with other modules. Or else.(-not implemented yet-)
 * Notifications - icons (gmail etc.)(-not implemented yet-)
+Check <a href="https://github.com/framboise-pi/MMM-MySenseHat/issues">issues</a>, I write there the ideas I will implement in future.
+
 <p><sup>Started in May 2020.</sup></p>
 
 # And ?
