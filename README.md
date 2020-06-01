@@ -36,8 +36,8 @@ On this module :
 <p><sup>Started in May 2020.</sup></p>
 
 # And ?
-My MagicMirror has been made with a display undersized, so it lets area to place the SenseHat in a corner, for exemple.
-Placed behind the mirror, it could be use to only add a colored light between the mirror and the wall, and with the MagicMirror module to display sensors info.
+<p>My MagicMirror has been made with a display undersized, so it leaves areas to place the SenseHat in a corner, for exemple.</p>
+<p>Placed behind the mirror, it could be used to only add a colored light between the mirror and the wall, and with the MagicMirror module to display sensors info.</p>
 But I'm makin this module with the idea of a SenseHat in a front corner of the mirror.
 
 # Screenshots
