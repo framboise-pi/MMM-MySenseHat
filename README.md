@@ -6,15 +6,14 @@ Check <a href="https://github.com/framboise-pi/MMM-MySenseHat/wiki">Wiki</a>
 
 <p>Run these commands at your Magic Mirror root directory.</p>
 
-<div><code>
-  cd modules
-  git clone https://github.com/framboise-pi/MMM-MySenseHat
-
-</code></div>
-
+<div>
+ <code>cd modules</code>
+ <code>git clone https://github.com/framboise-pi/MMM-MySenseHat</code>
+</div>
+<div>
 This command with MMM-MySenseHat folder
 <code>npm install</code>
-
+</div>
 
 ----------------------------------------------------
 
