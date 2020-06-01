@@ -18,7 +18,7 @@ On this module, ideas are :
 <p>VNC screenshot</p>
 <a href="https://ibb.co/JcQVydY"><img src="https://i.ibb.co/x2HWfsn/MMM-My-Sense-Hat-01.png" alt="MMM-My-Sense-Hat-01" border="0"></a>
 
-<p>Hello World !</p>
+<p>Hello World ! - module at 'middle_center' position</p>
 <a href="https://ibb.co/8YZgypY"><img src="https://i.ibb.co/Dr2fByr/MMM-My-Sense-Hat-02.png" alt="MMM-My-Sense-Hat-02" border="0"></a>
 
 -------------------------------------
