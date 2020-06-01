@@ -20,12 +20,22 @@ Check <a href="https://github.com/framboise-pi/MMM-MySenseHat/wiki">Wiki</a>
 # What ?
 I didn't find any sensehat module for the wonderful MagicMirror so I'm trying to make one.
 Using java librairies. And I started a MagicMirror in python in parallel, to use only python with sensehat and else.
-On this module, ideas are :
-* Sensors values displayed on Magic Mirror
-* random PixelArt on sensehat LED
-* Use of joystick and sensors to interact with other modules. Or else.
-* Notifications - icons (gmail etc.)
+On this module :
+* at start of MagicMirror a message displayed on SenseHat LED 
+* Sensors values displayed on a Magic Mirror module
+* on interval, random PixelArt on sensehat LED
+ - little monsters (1 for the moment)
+ - animations (not implemented yet)
+ - all LEDs on a color base on SenseHat temperature sensor
+ - a clock
+* Use of joystick and sensors to interact with other modules. Or else.(not implemented yet)
+* Notifications - icons (gmail etc.)(not implemented yet)
 <p><sup>Started in May 2020.</sup></p>
+
+# And ?
+My MagicMirror has been made with a display undersized, so it lets area to place the SenseHat in a corner, for exemple.
+Placed behind the mirror, it could be use to only add a colored light between the mirror and the wall, and with the MagicMirror module to display sensors info.
+But I'm makin this module with the idea of a SenseHat in a front corner of the mirror.
 
 # Screenshots
 <p>VNC screenshot</p>
