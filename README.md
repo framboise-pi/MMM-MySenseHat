@@ -41,13 +41,13 @@ modules: <span class="pl-kos">[</span>
 I didn't find any sensehat module for the wonderful MagicMirror so I'm trying to make one.
 Using java librairies. And I started a MagicMirror in python in parallel, to use only python with sensehat and else.
 On this module :
-* at start of MagicMirror a message displayed on SenseHat LED 
+* at start of MagicMirror a message displayed on SenseHat LED (by default : "MAGIC")
 * Sensors values displayed on a Magic Mirror module
 * on interval, random PixelArt on sensehat LED
- - 8x8 pixels little monsters (1 for the moment)
- - 8x8 pixels animations (-not implemented yet-)
- - all LEDs on a color base on SenseHat temperature sensor (-not implemented yet-)
- - a clock (-not implemented yet-)
+ - 8x8 pixels little monsters (1 for the moment) -- color is random each time
+ - 8x8 pixels animations (-- not implemented yet --)
+ - all LEDs on a color base on SenseHat temperature sensor (-- not implemented yet --)
+ - a clock (-- not implemented yet- -)
 * Use of joystick and sensors to interact with other modules. Or else.(-not implemented yet-)
 * Notifications - icons (gmail etc.)(-not implemented yet-)
 
