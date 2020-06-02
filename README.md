@@ -18,22 +18,23 @@ Check <a href="https://github.com/framboise-pi/MMM-MySenseHat/wiki">Wiki</a>
 
 ## II. Second Step
 <p>edit your config.js file from MagicMirror config folder</p>
-<div><code>
+<div class="highlight highlight-source-js"><pre>  
 //////////////////////
 // MY SENSE HAT
 //////////////////////
-<p>{</p>
-<p>	disabled : false,</p>
-<p>	module: "MMM-MySenseHat",</p>
-<p>	position: "middle_center",</p>
-<p>	header: "framboise-pi.fr - My Sense Hat",</p>
-<p>	config: {</p>
-<p>		read_interval : 2000</p>
-<p>		display_start_LED: true,</p>
-<p>		use_SenseHat_LED: true</p>
-<p>	}</p>
-<p>},</p>
-</code></div>
+modules: <span class="pl-kos">[</span>
+<span class="pl-kos">{</span>
+<span class="pl-c1">disabled</span>: <span class="pl-s">false</span><span class="pl-kos">,</span>
+<span class="pl-c1">module</span>: <span class="pl-s">"MMM-MySenseHat"</span><span class="pl-kos">,</span>
+<span class="pl-c1">position</span>: <span class="pl-s">"middle_center"</span><span class="pl-kos">,</span>  
+<span class="pl-c1">config</span>: <span class="pl-kos">{</span>
+<span class="pl-c">read_interval</span>: <span class="pl-s">2000</span><span class="pl-kos">,</span>
+<span class="pl-c">display_start_LED</span>: <span class="pl-s">true</span><span class="pl-kos">,</span>
+<span class="pl-c">use_SenseHat_LED</span>: <span class="pl-s">true</span><span class="pl-kos"></span>
+<span class="pl-kos">}</span>
+<span class="pl-kos">}</span>
+<span class="pl-kos">]</span>
+</pre></div>
 ----------------------------------------------------
 
 # What ?
