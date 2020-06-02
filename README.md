@@ -24,15 +24,15 @@ Check <a href="https://github.com/framboise-pi/MMM-MySenseHat/wiki">Wiki</a>
 //////////////////////
 modules: <span class="pl-kos">[</span>
 <span class="pl-kos">{</span>
-<span class="pl-c1">disabled</span>: <span class="pl-s">false</span><span class="pl-kos">,</span>
-<span class="pl-c1">module</span>: <span class="pl-s">"MMM-MySenseHat"</span><span class="pl-kos">,</span>
-<span class="pl-c1">position</span>: <span class="pl-s">"middle_center"</span><span class="pl-kos">,</span>  
-<span class="pl-c1">config</span>: <span class="pl-kos">{</span>
-<span class="pl-c">read_interval</span>: <span class="pl-s">2000</span><span class="pl-kos">,</span>
-<span class="pl-c">display_start_LED</span>: <span class="pl-s">true</span><span class="pl-kos">,</span>
-<span class="pl-c">use_SenseHat_LED</span>: <span class="pl-s">true</span><span class="pl-kos"></span>
-<span class="pl-kos">}</span>
-<span class="pl-kos">}</span>
+ <span class="pl-c1">disabled</span>: <span class="pl-s">false</span><span class="pl-kos">,</span>
+ <span class="pl-c1">module</span>: <span class="pl-s">"MMM-MySenseHat"</span><span class="pl-kos">,</span>
+ <span class="pl-c1">position</span>: <span class="pl-s">"middle_center"</span><span class="pl-kos">,</span>  
+  <span class="pl-c1">config</span>: <span class="pl-kos">{</span>
+   <span class="pl-c">read_interval</span>: <span class="pl-s">2000</span><span class="pl-kos">,</span>
+   <span class="pl-c">display_start_LED</span>: <span class="pl-s">true</span><span class="pl-kos">,</span>
+   <span class="pl-c">use_SenseHat_LED</span>: <span class="pl-s">true</span><span class="pl-kos"></span>
+  <span class="pl-kos">}</span>
+ <span class="pl-kos">}</span>
 <span class="pl-kos">]</span>
 </pre></div>
 ----------------------------------------------------
