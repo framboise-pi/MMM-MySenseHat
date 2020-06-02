@@ -28,7 +28,7 @@ Check <a href="https://github.com/framboise-pi/MMM-MySenseHat/wiki">Wiki</a>
 	<p>position: "middle_center",</p>
 	<p>header: "framboise-pi.fr - My Sense Hat",</p>
 	<p>config: {</p>
-       <p>read_interval : 2000
+	<p>read_interval : 2000</p>
 	<p>}</p>
 	<p>},</p>
 </code></div>
