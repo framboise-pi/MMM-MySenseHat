@@ -22,16 +22,17 @@ Check <a href="https://github.com/framboise-pi/MMM-MySenseHat/wiki">Wiki</a>
 //////////////////////
 // MY SENSE HAT
 //////////////////////
-	<p>{</p>
-	<p>disabled : false,</p>
-	<p>module: "MMM-MySenseHat",</p>
-	<p>position: "middle_center",</p>
-	<p>header: "framboise-pi.fr - My Sense Hat",</p>
-	<p>header: true,</p>
-	<p>config: {</p>
-	<p>read_interval : 2000</p>
-	<p>}</p>
-	<p>},</p>
+<p>{</p>
+<p>	disabled : false,</p>
+<p>	module: "MMM-MySenseHat",</p>
+<p>	position: "middle_center",</p>
+<p>	header: "framboise-pi.fr - My Sense Hat",</p>
+<p>	config: {</p>
+<p>		read_interval : 2000</p>
+<p>		display_start_LED: true,</p>
+<p>		use_SenseHat_LED: true</p>
+<p>	}</p>
+<p>},</p>
 </code></div>
 ----------------------------------------------------
 
