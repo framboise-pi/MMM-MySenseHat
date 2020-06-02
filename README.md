@@ -4,7 +4,7 @@ Magic Mirror Raspberry Pi Sense Hat Module
 # Installation
 Check <a href="https://github.com/framboise-pi/MMM-MySenseHat/wiki">Wiki</a>
 
-I. First Step
+## I. First Step
 <p>Run these commands at your Magic Mirror root directory.</p>
 
 <div>
@@ -16,9 +16,9 @@ I. First Step
 <code>npm install</code>
 </div>
 
-II. Second Step
+## II. Second Step
 <p>edit your config.js file from MagicMirror config folder</p>
-<code>
+<div><code>
 //////////////////////
 // MY SENSE HAT
 //////////////////////
@@ -31,7 +31,7 @@ II. Second Step
        read_interval : 2000
 			    }
 	  },
-</code>
+</code></div>
 ----------------------------------------------------
 
 # What ?
