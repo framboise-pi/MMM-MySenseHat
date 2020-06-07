@@ -9,7 +9,7 @@ Check <a href="https://github.com/framboise-pi/MMM-MySenseHat/wiki">Wiki</a>
 
 <div>
  <code><p>cd ~/MagicMirror/modules</p>
-<p> git clone https://github.com/framboise-pi/MMM-MySenseHat</p></code>
+<p> git clone https://github.com/framboise-pi/MMM-MySenseHat.git</p></code>
 </div>
 <div>
  <p>This command with MMM-MySenseHat folder (this will install dependencies)</p>
