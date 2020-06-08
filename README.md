@@ -41,7 +41,7 @@ modules: <span class="pl-kos">[</span>
 
 # What ?
 I didn't find any sensehat module for the wonderful MagicMirror so I'm trying to make one.
-Using java librairies. <i>And I started a MagicMirror in python in parallel, to use only python with sensehat and else.</i>
+Using java librairies. <i>I started a MagicMirror in python in parallel : MPMM (My Pi Magic Mirror), to use only python with sensehat and else, with the aim of making it working on a raspberry zero (Cause it don't work fine PiZero/MagicMirror).</i>
 
 ## Modes on 8x8 LED (on interval with true/false options)
 At start of MagicMirror a message will display (by default : "MAGIC")
