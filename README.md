@@ -2,7 +2,7 @@
 Magic Mirror Raspberry Pi Sense Hat Module
 
 # Installation
-Check <a href="https://github.com/framboise-pi/MMM-MySenseHat/wiki">Wiki</a>
+<i>Please check <a href="https://github.com/framboise-pi/MMM-MySenseHat/wiki">Wiki</a> first for any questions, or error you experience.</i>
 
 ## I. First Step
 <p>Run these commands at your Magic Mirror root directory.</p>
@@ -46,10 +46,10 @@ Using java librairies. <i>And I started a MagicMirror in python in parallel, to 
 ## Modes on 8x8 LED (on interval with true/false options)
 At start of MagicMirror a message will display (by default : "MAGIC")
 * 8x8 pixels little monsters (4 for the moment) -- color is random each time
-* a 8x8 clock (hours and minutes colors are random)
-* random PixelArt -- every pixel is random (in next version 0.0.2)
-* random PixelArt -- vertical symmetry left/right (in next version 0.0.2)
-* temperature value with 2colors scale (in next version 0.0.2)
+* 8x8 clock (hours and minutes colors are random)
+* 8x8 random PixelArt -- every pixel is random (in next version 0.0.2)
+* 8x8 random PixelArt -- vertical symmetry left/right (in next version 0.0.2)
+* temperature sensor value with 2 random colors scale (in next version 0.0.2)
 
 ## Modes on MagicMirror
  Sensors values displayed on a Magic Mirror module
