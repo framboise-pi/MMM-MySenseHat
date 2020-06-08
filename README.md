@@ -30,8 +30,11 @@ modules: <span class="pl-kos">[</span>
   <span class="pl-c1">config</span>: <span class="pl-kos">{</span>
    <span class="pl-c">read_interval</span>: <span class="pl-s">2000</span><span class="pl-kos">,</span>
    <span class="pl-c">display_start_LED</span>: <span class="pl-s">true</span><span class="pl-kos">,</span>
-   <span class="pl-c">use_SenseHat_LED</span>: <span class="pl-s">true</span><span class="pl-kos"></span>
-  <span class="pl-kos">}</span>
+   <span class="pl-c">use_SenseHat_LED</span>: <span class="pl-s">true</span><span class="pl-kos">,</span>
+   <span class="pl-c">fontsize</span>: <span class="pl-s">"normal"//small | normal | large | xlarge</span><span class="pl-kos">,</span>
+   <span class="pl-c">show_all_sensors</span>: <span class="pl-s">false</span><span class="pl-kos"></span>
+   
+<span class="pl-kos">}</span>
  <span class="pl-kos">}</span>
 <span class="pl-kos">]</span>
 </pre></div>
