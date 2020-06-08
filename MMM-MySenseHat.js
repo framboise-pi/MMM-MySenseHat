@@ -10,9 +10,13 @@
 Module.register("MMM-MySenseHat",{
 	// CONFIG
 	defaults: {
-		read_interval: 500,//ms
-		slide_interval: 10000,//ms
-		slide_display: 5000,//ms
+		read_interval: 500,//ms interval on magicmirror module
+		slide_interval: 20000,//ms as it refreshes clock/time : try keep <30 seconds)
+		display_start_LED: true,
+		use_SenseHat_LED: true,
+		random_mode: true,// for future - on false, change mode with sensehatjoystick
+		show_all_sensors: true,
+		fontsize: "normal",//small | normal | large | xlarge
 
 	},
 	// DATA DISPLAY STARTUP VALUE
@@ -30,15 +34,35 @@ Module.register("MMM-MySenseHat",{
 		compy: "<sup>-N/A-</sup>",
 		compz: "<sup>-N/A-</sup>"
 	},
+	//VARIABLES USED
+	round: 0,//pixelart|clock|temp value|weather|...
 	// CSS
 	getStyles: function () {
 		return ["MMM-MySenseHat.css", "font-awesome.css"];
 	},
 	//
 	start: function() {
-		this.sendSocketNotification("MMM_MySenseHat_LoadingTxt");
+		var self = this;
+		if (this.config.display_start_LED == true) this.sendSocketNotification("MMM_MySenseHat_LoadingTxt");
 		this.askdata();
-		this.pixelslide();
+		if (this.config.use_SenseHat_LED == true && this.config.random_mode == true) self.autochangemode();
+	},
+	//AUTO CHANGE MODE
+	autochangemode: function () {
+		var self = this;
+		setInterval(function() {
+			self.round = self.round + 1;
+			if (self.round == 1 )
+			{
+				self.pixelslide();
+			}
+			if (self.round == 2 )
+			{
+				self.sendSocketNotification("MMM_MySenseHat_Clock");
+				self.round = 0;
+			}
+		}, self.config.slide_interval);
+		
 	},
 	//ASK FOR SENSORS DATA
 	askdata: function () {
@@ -50,10 +74,7 @@ Module.register("MMM-MySenseHat",{
 	},
 	//SLIDESHOW LED
 	pixelslide: function () {
-		var self = this;
-		setInterval(function() {
-			self.sendSocketNotification("MMM_MySenseHat_PixelSlide");
-			}, self.config.slide_interval);
+		this.sendSocketNotification("MMM_MySenseHat_PixelSlide");
 	},
 	//
 	socketNotificationReceived: function (notification, payload) {
@@ -79,14 +100,17 @@ Module.register("MMM-MySenseHat",{
 	//#end socketNotif SensorsData
 	getDom: function() {
 		var wrapper = document.createElement("div");
+		wrapper.className = this.config.classes ? this.config.classes : "thin " + this.config.fontsize + " bright pre-line";
 		ihtml =  "<div class='container'>"
 		ihtml += "<div class='line'><sup> humidité </sup> <i class=\"fa fa-tint\" style=\"color:#50FCFF\"></i> " + this.SensorsData.humi + " %</div>"
 		ihtml += "<div class='line'><sup> température </sup> <i class=\"fa fa-thermometer-empty\" style=\"color:#FF8A50\"></i> " + this.SensorsData.temp + " °C</div>"
 		ihtml += "<div class='line'><sup> pression </sup> <i class=\"fa fa-cloud\" style=\"color:#EFEFEF\"></i> " + this.SensorsData.press + " mbar</div>"
+		if (this.config.show_all_sensors) {
 		ihtml += "<div class='line'><sup> compas </sup> <i class=\"fa fa-compass\" style=\"color:#CD1C00\"></i>  " + this.SensorsData.compx + "<sup>X</sup> | " + this.SensorsData.compy + "<sup>Y</sup> | " + this.SensorsData.compz + "<sup>Z</sup> µT</div>"
 		//ihtml += "<div class='line'><sup> fusion </sup> <i class=\"fa fa-compass\" style=\"color:#CD1C00\"></i>  " + this.SensorsData.fusix + "<sup>X</sup> | " + this.SensorsData.fusiy + "<sup>Y</sup> | " + this.SensorsData.fusiz + "<sup>Z</sup></div>"
 		ihtml += "<div class='line'><sup> gyroscope </sup> <i class=\"fa fa-arrows-alt\" style=\"color:#FAFF8E\"></i>  " + this.SensorsData.gyrox + "<sup>X</sup> | " + this.SensorsData.gyroy + "<sup>Y</sup> | " + this.SensorsData.gyroz + "<sup>Z</sup> rad/sec</div>"
 		ihtml += "<div class='line'><sup> accélération </sup> <i class=\"fa fa-dashboard\" style=\"color:#A6FF8E\"></i>  " + this.SensorsData.accex + "<sup>X</sup> | " + this.SensorsData.accey + "<sup>Y</sup> | " + this.SensorsData.accez + "<sup>Z</sup> G</div>"
+		}
 		ihtml += "</div>"
 		wrapper.innerHTML = ihtml
 		return wrapper

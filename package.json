@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/framboise-pi/MMM-MysenseHat#readme",
   "dependencies": {
-    "node-sense-hat": "^0.0.2"
+    "node-sense-hat": "^0.0.2",
+    "java-random": "^0.4.0"
   },
   "devDependencies": {
     "electron-rebuild": "^1.11.0"
