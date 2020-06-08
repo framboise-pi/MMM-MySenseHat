@@ -31,9 +31,9 @@ modules: <span class="pl-kos">[</span>
    <span class="pl-c">read_interval</span>: <span class="pl-s">2000</span><span class="pl-kos">,</span>
    <span class="pl-c">display_start_LED</span>: <span class="pl-s">true</span><span class="pl-kos">,</span>
    <span class="pl-c">use_SenseHat_LED</span>: <span class="pl-s">true</span><span class="pl-kos">,</span>
-   <span class="pl-c">show_all_sensors</span>: <span class="pl-s">false</span><span class="pl-kos"></span>
+   <span class="pl-c">show_all_sensors</span>: <span class="pl-s">false</span><span class="pl-kos">,</span>
    <span class="pl-c">fontsize</span>: <span class="pl-s">"normal"//small | normal | large | xlarge</span><span class="pl-kos"></span> 
-<span class="pl-kos">}</span>
+  <span class="pl-kos">}</span>
  <span class="pl-kos">}</span>
 <span class="pl-kos">]</span>
 </pre></div>
@@ -45,13 +45,17 @@ Using java librairies. And I started a MagicMirror in python in parallel, to use
 On this module :
 * at start of MagicMirror a message displayed on SenseHat LED (by default : "MAGIC")
 * Sensors values displayed on a Magic Mirror module
+ ** humidity, temp, pression - or all 6 sensors
 * on interval, random PixelArt on sensehat LED
- - 8x8 pixels little monsters (1 for the moment) -- color is random each time
- - 8x8 pixels animations (-- not implemented yet --)
- - all LEDs on a color base on SenseHat temperature sensor (-- not implemented yet --)
- - a clock (-- not implemented yet- -)
-* Use of joystick and sensors to interact with other modules. Or else.(-not implemented yet-)
-* Notifications - icons (gmail etc.)(-not implemented yet-)
+** 8x8 pixels little monsters (3 for the moment) -- color is random each time
+* a 8x8 clock (hours and minutes colors are random)
+
+ NOT IMPLEMENTED YET
+* 8x8 pixels animations
+** - all LEDs on a color base on SenseHat temperature sensor
+** - pixelart random draw
+* Use of joystick and sensors to interact with other modules. Or else.
+* Notifications - icons (gmail etc.)
 
 <div>Check <a href="https://github.com/framboise-pi/MMM-MySenseHat/issues">issues</a>, I write there the ideas I will implement in future.</div>
 
