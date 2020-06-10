@@ -64,6 +64,8 @@ At start of MagicMirror a message will display (by default : "MAGIC")
 * all LEDs on a color base on SenseHat temperature sensor
 * Use of joystick and sensors to interact with other modules. Or else.
 * Notifications - icons (gmail etc.)
+* cpu temp compared to 64°C ?
+* cpu speed compared to max ?
 
 <div>Check <a href="https://github.com/framboise-pi/MMM-MySenseHat/issues">issues</a>, I write there the ideas I will implement in future.</div>
 
@@ -83,6 +85,7 @@ But I'm makin this module with the idea of a SenseHat in a front corner of the m
 
 # Now
 This is maintained (more precisely, its in dev. Some functionnalities are not yet implemented and some will be improved in future)
+* share your monster in pixel art, to add it in next version
 
 # Thanks
 To all Magic Mirror community and to MichMich.
