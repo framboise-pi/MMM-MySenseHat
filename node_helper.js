@@ -3,7 +3,7 @@
 //	Module: MMM-MySenseHat
 //	https://github.com/framboise-pi/MMM-MySenseHat
 //	Copyright(C) 2020 Cedric Camille Lafontaine http://www.framboise-pi.fr,
-//	version 0.0.1
+//	version 0.0.2
 //===========================
 var NodeHelper = require("node_helper");
 const request = require('request');
@@ -11,7 +11,8 @@ const sense = require('sense-hat-led').sync;
 const imu = require('node-sense-hat').Imu;
 const IMU = new imu.IMU();
 var Random = require('java-random');
-//var fs = require('fs');
+const si = require('systeminformation');
+
 // ORIENTATION
 sense.clear();
 sense.setRotation(270);
@@ -21,12 +22,13 @@ color1 = [255,0,0];
 color2 = [0,255,0,0];
 //
 
-//
+
 module.exports = NodeHelper.create({
 
 	start: function() {
 
 	},
+//
 //
 	clockclock: function(payload){
 		var self = this;
@@ -36,9 +38,7 @@ module.exports = NodeHelper.create({
 		num_c = parseInt(payload[2]);
 		num_d = parseInt(payload[3]);
 		
-		if (!num_b) { num_b = num_a; num_a = 0; }
-		if (!num_d) { num_d = num_c; num_c = 0; }
-			
+		
 		num_1 = this.getdigit(num_a,1);
 		num_2 = this.getdigit(num_b,2);
 		num_3 = this.getdigit(num_c,3);
@@ -109,8 +109,8 @@ module.exports = NodeHelper.create({
 	this.color2 = this.ColorRandom();
 	ab = "" + now_hours;
 	cd = "" + now_minutes;
-	if (now_hours.length == 1) ab = "0" + now_hours;
-	if (now_minutes.length == 1) cd = "0" + now_minutes;
+	if (parseInt(ab) <= 10) ab = "0" + now_hours;
+	if (parseInt(cd) <= 10) cd = "0" + now_minutes;
 	now_array = [
 		ab.slice(0,1),
 		ab.slice(1,2),
@@ -131,9 +131,196 @@ module.exports = NodeHelper.create({
 		return randomed;
 	},
 //
+	PixelTemp: function(value_temp){
+		// maintain red for temp
+		var self = this;
+		colora = this.ColorRandom();
+		if (colora[0] >= 51) { colora[0] = 50 } 
+		colorb = this.ColorRandom();
+		colorb[0] = 255;
+		array_pixel = [];
+		array_case = -1;
+		value_int = parseInt(value_temp);
+		if (value_int > 64) { 
+			self.PixelExclamation();
+			return;
+			}
+		value_int = 64 - value_int;
+		for(var i = 0; i < 64;i++){
+			colori = colora;
+			if (i >= value_int) { colori = colorb; }
+			array_case = array_case + 1;
+			array_pixel[array_case] = colori;
+			
+		}
+		sense.setPixels(array_pixel);
+		
+	},
+//
+	PixelExclamation: function(){
+		RR = this.ColorRandom();
+		OO = [0,0,0];
+		const exclamation = [
+			OO, OO, OO, RR, RR, OO, OO, OO,
+			OO, OO, OO, RR, RR, OO, OO, OO,
+			OO, OO, OO, RR, RR, OO, OO, OO,
+			OO, OO, OO, RR, RR, OO, OO, OO,
+			OO, OO, OO, RR, RR, OO, OO, OO,
+			OO, OO, OO, OO, OO, OO, OO, OO,
+			OO, OO, OO, RR, RR, OO, OO, OO,
+			OO, OO, OO, OO, OO, OO, OO, OO
+			];
+			
+		sense.setPixels(exclamation);
+		
+	},
+//
+//
+	MakeRandomPixelArt: function(){
+		array_pixel = [];
+		array_case = -1;
+		for(var i = 0; i < 64;i++){
+			array_case = array_case + 1;
+			array_pixel[array_case] = this.ColorRandom();
+			
+		}
+		sense.setPixels(array_pixel);
+		
+	},
+//
+	PixelCpu: function(){
+		sense.clear();
+		cpu_load = null;
+
+		red = [255,0,0];
+		x = -1;
+		y = 0;
+		timerCpu = setInterval(function() {
+			si.currentLoad(data => {
+			  cpu_load = data.currentload;
+			});
+			if (!cpu_load) return;
+			x = x+1;
+			percent = cpu_load;
+			percent = Math.round(percent*100)/100
+			if (percent <= 12) { y = 7;  red[0] = 100;}
+			if (percent > 12 && percent <= 25) { y = 6; red[0] = 120;}
+			if (percent > 25 && percent <= 37) { y = 5; red[0] = 140;}
+			if (percent > 37 && percent <= 40) { y = 4; red[0] = 160;}
+			if (percent > 40 && percent <= 52) { y = 3; red[0] = 180;}
+			if (percent > 52 && percent <= 65) { y = 2; red[0] = 200;}
+			if (percent > 65 && percent <= 77) { y = 1; red[0] = 220;}
+			if (percent > 77 && percent <= 100) { y = 0;}
+			//sense.showMessage(percent.toString(), 0.2);
+			sense.setPixel(x,y,red);
+				if (x >= 7) {x = -1; sense.clear();}
+		}, 1000);
+		setTimeout(function() {
+			clearInterval(timerCpu);
+		}, 28000);
+		
+	},
+//
+//
+	PixelRam: function(){
+		sense.clear();
+		ram_total = 0;
+		ram_free = 0;
+
+		green = [0,255,0];
+		x = -1;
+		y = 0;
+		timerRam = setInterval(function() {
+			si.mem(data => {
+			  ram_free = data.available;// closest to lxtask values
+			  ram_total = data.total;
+			});
+			percent = (ram_free * 100) / ram_total;
+			percent = Math.round(percent*100)/100
+			if (!percent) return;
+			x = x+1;
+			if (percent <= 12) { y = 0; }
+			if (percent > 12 && percent <= 25) { y = 1; green[1] = 220;}
+			if (percent > 25 && percent <= 37) { y = 2; green[1] = 200;}
+			if (percent > 37 && percent <= 40) { y = 3; green[1] = 180;}
+			if (percent > 40 && percent <= 52) { y = 4; green[1] = 160;}
+			if (percent > 52 && percent <= 65) { y = 5; green[1] = 140;}
+			if (percent > 65 && percent <= 77) { y = 6; green[1] = 120;}
+			if (percent > 77 && percent <= 100) { y = 7; green[1] = 100;}
+			//sense.showMessage(percent.toString(), 0.2);
+			sense.setPixel(x,y,green);
+				if (x >= 7) {x = -1; sense.clear();}
+		}, 1000);
+		setTimeout(function() {
+			clearInterval(timerRam);
+		}, 28000);
+		
+	},
+//
+	MakeRandomPixelArtV: function(){
+		array_pixel = [];
+		array_case = -1;
+		
+		for(var i=0; i < 4;i++){//0to7
+			array_case = array_case + 1;
+			array_pixel[array_case] = this.ColorRandom();
+			array_pixel[7-array_case] = array_pixel[array_case];
+		}
+		array_case = 7;
+		for(var i=0; i < 4;i++){//8to15
+			array_case = array_case + 1;
+			array_pixel[array_case] = this.ColorRandom();
+			array_pixel[23-array_case] = array_pixel[array_case];
+		}
+		array_case = 15;
+		for(var i=0; i < 4;i++){//16to23
+			array_case = array_case + 1;
+			array_pixel[array_case] = this.ColorRandom();
+			array_pixel[39-array_case] = array_pixel[array_case];
+		}	
+		array_case = 23;
+		for(var i=0; i < 4;i++){//24to31
+			array_case = array_case + 1;
+			array_pixel[array_case] = this.ColorRandom();
+			array_pixel[55-array_case] = array_pixel[array_case];
+		}		
+		array_case = 31;
+		for(var i=0; i < 4;i++){//32to39
+			array_case = array_case + 1;
+			array_pixel[array_case] = this.ColorRandom();
+			array_pixel[71-array_case] = array_pixel[array_case];
+		}			
+		array_case = 39;
+		for(var i=0; i < 4;i++){//40to47
+			array_case = array_case + 1;
+			array_pixel[array_case] = this.ColorRandom();
+			array_pixel[87-array_case] = array_pixel[array_case];
+		}			
+		array_case = 47;
+		for(var i=0; i < 4;i++){//48to55
+			array_case = array_case + 1;
+			array_pixel[array_case] = this.ColorRandom();
+			array_pixel[103-array_case] = array_pixel[array_case];
+		}		
+		array_case = 55;
+		for(var i=0; i < 4;i++){//56to63
+			array_case = array_case + 1;
+			array_pixel[array_case] = this.ColorRandom();
+			array_pixel[119-array_case] = array_pixel[array_case];
+		}				
+
+		sense.setPixels(array_pixel);
+	},
+//
 	socketNotificationReceived: function (notification, payload) {
 		//
 		var self = this;
+		if (notification === "MMM_MySenseHat_PixelCpu"){
+			self.PixelCpu();
+		}
+		if (notification === "MMM_MySenseHat_PixelRam"){
+			self.PixelRam();
+		}
 		if (notification === "MMM_MySenseHat_LoadingTxt"){
 			sense.flashMessage("MAGIC", 0.5);
 			sense.sleep(0.7);
@@ -142,6 +329,18 @@ module.exports = NodeHelper.create({
 		//
 		if (notification === "MMM_MySenseHat_Clock"){
 			self.clock();
+		}
+		//PixelTemp
+		if (notification === "MMM_MySenseHat_PixelTemp"){
+			self.PixelTemp(payload);
+		}
+		//
+		if (notification === "MMM_MySenseHat_Random1x1"){
+			self.MakeRandomPixelArt();
+		}
+		//
+		if (notification === "MMM_MySenseHat_RandomV"){
+			self.MakeRandomPixelArtV();
 		}
 		//
 		if (notification === "MMM_MySenseHat_ReadSensors"){
@@ -200,7 +399,7 @@ module.exports = NodeHelper.create({
 			RR = this.ColorRandom();
 			OO = [0, 0, 0];//light off,
 			const monsters = [
-				[
+				[//1
 				OO, OO, RR, RR, RR, RR, OO, OO,
 				OO, RR, RR, RR, RR, RR, RR, OO,
 				RR, RR, OO, RR, RR, OO, RR, RR,
@@ -210,7 +409,7 @@ module.exports = NodeHelper.create({
 				OO, RR, RR, OO, OO, RR, RR, OO,
 				OO, RR, OO, OO, OO, OO, RR, OO
 				],
-				[
+				[//2
 				OO, OO, OO, OO, OO, OO, OO, OO,
 				OO, RR, RR, RR, RR, RR, RR, OO,
 				OO, RR, OO, OO, OO, OO, RR, OO,
@@ -220,7 +419,7 @@ module.exports = NodeHelper.create({
 				RR, RR, OO, OO, OO, OO, RR, RR,
 				OO, RR, OO, OO, OO, OO, RR, OO
 				],
-				[
+				[//3
 				OO, OO, RR, OO, OO, OO, RR, OO,
 				OO, OO, RR, RR, RR, RR, RR, OO,
 				OO, OO, RR, OO, RR, OO, RR, OO,
@@ -229,6 +428,36 @@ module.exports = NodeHelper.create({
 				OO, OO, RR, RR, RR, RR, RR, OO,
 				OO, RR, OO, RR, OO, RR, OO, OO,
 				RR, OO, RR, OO, RR, OO, RR, OO
+				],
+				[//4
+				RR, OO, OO, OO, OO, OO, OO, RR,
+				RR, RR, RR, RR, RR, RR, RR, RR,
+				RR, OO, RR, OO, OO, RR, OO, RR,
+				RR, OO, OO, OO, OO, OO, OO, RR,
+				RR, RR, RR, RR, RR, RR, RR, RR,
+				OO, OO, OO, RR, RR, OO, OO, OO,
+				OO, OO, RR, RR, RR, RR, OO, OO,
+				OO, RR, OO, OO, OO, OO, RR, OO
+				],
+				[//5
+				OO, RR, OO, OO, OO, OO, RR, OO,
+				OO, OO, RR, OO, OO, RR, OO, OO,
+				OO, RR, OO, RR, RR, OO, RR, OO,
+				OO, RR, RR, RR, RR, RR, RR, OO,
+				OO, OO, OO, RR, RR, RR, RR, OO,
+				OO, OO, RR, OO, OO, RR, OO, OO,
+				OO, OO, RR, RR, RR, RR, OO, OO,
+				OO, OO, OO, RR, RR, OO, OO, OO
+				],
+				[//6
+				RR, OO, OO, OO, OO, OO, OO, RR,
+				OO, RR, OO, OO, OO, OO, RR, OO,
+				RR, OO, RR, OO, OO, RR, OO, RR,
+				OO, RR, OO, RR, RR, OO, RR, OO,
+				OO, OO, RR, OO, OO, RR, OO, OO,
+				OO, RR, OO, OO, OO, OO, RR, OO,
+				RR, RR, OO, OO, OO, OO, RR, RR,
+				OO, RR, OO, RR, RR, OO, RR, OO
 				]
 			]
 
