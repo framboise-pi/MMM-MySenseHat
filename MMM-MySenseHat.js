@@ -4,19 +4,28 @@
  *	Module: MMM-MySenseHat
  *	https://github.com/framboise-pi/MMM-MySenseHat
  *	Copyright(C) 2020 Cedric Camille Lafontaine http://www.framboise-pi.fr,
- *	version 0.0.1
+ *	version 0.0.3
  */
 
+	
 Module.register("MMM-MySenseHat",{
 	// CONFIG
 	defaults: {
-		read_interval: 500,//ms interval on magicmirror module
-		slide_interval: 20000,//ms as it refreshes clock/time : try keep <30 seconds)
-		display_start_LED: true,
-		use_SenseHat_LED: true,
-		random_mode: true,// for future - on false, change mode with sensehatjoystick
-		show_all_sensors: true,
-		fontsize: "normal",//small | normal | large | xlarge
+		slide_interval: 30000,//ms as it refreshes clock/time : try keep <30 seconds)
+			/*config: {
+				read_interval : 20000,
+				display_start_LED: false,
+				use_SenseHat_LED: true,
+				show_all_sensors: false,
+				mode_monster: true,
+				mode_clock: true,
+				mode_pixel1: false,
+				mode_pixelv: true,
+				mode_temp: true,
+				cpu_load: true,
+				ram_used: true,
+				fontsize: "normal"//small | normal | large | xlarge
+				}*/
 
 	},
 	// DATA DISPLAY STARTUP VALUE
@@ -36,6 +45,7 @@ Module.register("MMM-MySenseHat",{
 	},
 	//VARIABLES USED
 	round: 0,//pixelart|clock|temp value|weather|...
+
 	// CSS
 	getStyles: function () {
 		return ["MMM-MySenseHat.css", "font-awesome.css"];
@@ -45,21 +55,55 @@ Module.register("MMM-MySenseHat",{
 		var self = this;
 		if (this.config.display_start_LED == true) this.sendSocketNotification("MMM_MySenseHat_LoadingTxt");
 		this.askdata();
-		if (this.config.use_SenseHat_LED == true && this.config.random_mode == true) self.autochangemode();
+		if (this.config.use_SenseHat_LED == true) self.autochangemode();
 	},
+    //
 	//AUTO CHANGE MODE
 	autochangemode: function () {
 		var self = this;
 		setInterval(function() {
-			self.round = self.round + 1;
-			if (self.round == 1 )
+			
+		self.round = self.round + 1;
+			if (self.round == 1)
 			{
-				self.pixelslide();
+				if (self.config.mode_monster) { self.pixelslide(); }
+				else self.round = 2;
 			}
 			if (self.round == 2 )
 			{
-				self.sendSocketNotification("MMM_MySenseHat_Clock");
-				self.round = 0;
+				if (self.config.mode_clock) { 
+					self.sendSocketNotification("MMM_MySenseHat_Clock"); }
+				else self.round = 3;
+			}
+			if (self.round == 3 )
+			{
+				if (self.config.mode_pixel1) { 
+					self.sendSocketNotification("MMM_MySenseHat_Random1x1"); }
+				else self.round = 4;
+			}
+			if (self.round == 4 )
+			{
+				if (self.config.mode_pixelv) { 
+					self.sendSocketNotification("MMM_MySenseHat_RandomV"); }
+				else self.round = 5;
+			}
+			if (self.round == 5 )
+			{
+				if (self.config.mode_temp) { 
+					self.sendSocketNotification("MMM_MySenseHat_PixelTemp", self.SensorsData.temp); }
+				else self.round = 6;
+			}
+			if (self.round == 6 )
+			{
+				if (self.config.cpu_load) { 
+					self.sendSocketNotification("MMM_MySenseHat_PixelCpu"); }
+				else self.round = 7;
+			}
+			if (self.round == 7 )
+			{
+				if (self.config.ram_used) { 
+					self.sendSocketNotification("MMM_MySenseHat_PixelRam"); }
+				self.round = 0; 
 			}
 		}, self.config.slide_interval);
 		
@@ -78,7 +122,7 @@ Module.register("MMM-MySenseHat",{
 	},
 	//
 	socketNotificationReceived: function (notification, payload) {
-		if (notification = "MMM_MySenseHat_SensorsData"){
+		if (notification === "MMM_MySenseHat_SensorsData"){
 		//TEMP-HUMIDITY-PRESSION
 			this.SensorsData.temp = Math.round(payload.temp*100)/100
 			this.SensorsData.humi = Math.round(payload.humi*100)/100
