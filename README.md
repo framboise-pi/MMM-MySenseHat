@@ -54,11 +54,11 @@ Using java librairies. <i>I started a MagicMirror in python in parallel : MPMM (
 At start of MagicMirror a message will display (by default : "MAGIC")
 * 8x8 pixels little monsters (4 for the moment) -- color is random each time
 * 8x8 clock (hours and minutes colors are random)
-* 8x8 random PixelArt -- every pixel is random (in next version 0.0.2)
-* 8x8 random PixelArt -- vertical symmetry left/right (in next version 0.0.2)
-* temperature sensor value with 2 random colors scale (in next version 0.0.2)
-* cpu average load - red dot line (in next version 0.0.2)
-* ram usage - green dot line (in next version 0.0.2)
+* 8x8 random PixelArt -- every pixel is random
+* 8x8 random PixelArt -- vertical symmetry left/right
+* temperature sensor value with 2 random colors scale
+* cpu average load - red dot line
+* ram usage - green dot line
 
 
 ## Modes on MagicMirror
