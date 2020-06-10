@@ -4,7 +4,7 @@
  *	Module: MMM-MySenseHat
  *	https://github.com/framboise-pi/MMM-MySenseHat
  *	Copyright(C) 2020 Cedric Camille Lafontaine http://www.framboise-pi.fr,
- *	version 0.0.3
+ *	version 0.0.2
  */
 
 	
