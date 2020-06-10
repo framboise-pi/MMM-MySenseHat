@@ -32,6 +32,13 @@ modules: <span class="pl-kos">[</span>
    <span class="pl-c">display_start_LED</span>: <span class="pl-s">true</span><span class="pl-kos">,</span>
    <span class="pl-c">use_SenseHat_LED</span>: <span class="pl-s">true</span><span class="pl-kos">,</span>
    <span class="pl-c">show_all_sensors</span>: <span class="pl-s">false</span><span class="pl-kos">,</span>
+   <span class="pl-c">mode_monster</span>: <span class="pl-s">true</span><span class="pl-kos">,</span> 
+   <span class="pl-c">mode_clock</span>: <span class="pl-s">true</span><span class="pl-kos">,</span> 
+   <span class="pl-c">mode_pixel1</span>: <span class="pl-s">true</span><span class="pl-kos">,</span> 
+   <span class="pl-c">mode_pixelv</span>: <span class="pl-s">true</span><span class="pl-kos">,</span> 
+   <span class="pl-c">mode_temp</span>: <span class="pl-s">true</span><span class="pl-kos">,</span> 
+   <span class="pl-c">cpu_load</span>: <span class="pl-s">true</span><span class="pl-kos">,</span> 
+   <span class="pl-c">ram_used</span>: <span class="pl-s">true</span><span class="pl-kos">,</span> 
    <span class="pl-c">fontsize</span>: <span class="pl-s">"normal"//small | normal | large | xlarge</span><span class="pl-kos"></span> 
   <span class="pl-kos">}</span>
  <span class="pl-kos">}</span>
