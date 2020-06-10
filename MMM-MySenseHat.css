@@ -12,6 +12,11 @@
     clear:right;
 }
 
+.MMM-MySenseHat div.left {
+    float: left;
+    padding-left:10px;
+}
+
 .MMM-MySenseHat div.right {
     float: right;
     padding-left:10px;
