@@ -1,5 +1,6 @@
 # MMM-MySenseHat
 Magic Mirror Raspberry Pi Sense Hat Module
+Thank you for your eventual Star on this passionated handmade script ! It's really appreciated in this dark moments :p
 
 # Installation
 <i>Please check <a href="https://github.com/framboise-pi/MMM-MySenseHat/wiki">Wiki</a> first for any questions, or error you experience.</i>
