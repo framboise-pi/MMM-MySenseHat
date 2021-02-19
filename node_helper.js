@@ -2,8 +2,8 @@
 //	Magic Mirror
 //	Module: MMM-MySenseHat
 //	https://github.com/framboise-pi/MMM-MySenseHat
-//	Copyright(C) 2020 Cedric Camille Lafontaine http://www.framboise-pi.fr,
-//	version 0.0.2
+//	Copyright(C) 2021 Cedric Camille Lafontaine http://www.framboise-pi.fr,
+//	version 0.0.3
 //===========================
 var NodeHelper = require("node_helper");
 const request = require('request');
@@ -12,10 +12,11 @@ const imu = require('node-sense-hat').Imu;
 const IMU = new imu.IMU();
 var Random = require('java-random');
 const si = require('systeminformation');
+var compareVersions = require('compare-versions');
 
 // ORIENTATION
 sense.clear();
-sense.setRotation(270);
+sense.setRotation(90);
 sense.lowLight = true;
 
 color1 = [255,0,0];
@@ -312,9 +313,36 @@ module.exports = NodeHelper.create({
 		sense.setPixels(array_pixel);
 	},
 //
+
+	sendlatestversion: function(payload){
+		this.sendSocketNotification("MMM_MySenseHat_Latest_Version",payload);
+	},
+//
 	socketNotificationReceived: function (notification, payload) {
 		//
 		var self = this;
+
+		if (notification === "MMM_MySenseHat_Version"){
+			var getver = require('getver');
+
+			getver({
+			  username: 'framboise-pi',
+			  repo: 'MMM-MySenseHat'
+			}, function(err, version, pkg) {
+			  //console.log(err); // null or Error
+			  //console.log(version); // string containing version, i.e. "1.0.0"
+			  //console.log(pkg); // object containing entire package.json
+				current = require('./package.json');
+				//***return 1:new available / 0: same as github// -1: dev version
+				var versionreturn = compareVersions(version, current.version);
+				payload = {
+					last_version: version,
+					installed: current.version,
+					versionreturn: versionreturn
+					};
+				self.sendlatestversion(payload);
+				});//end function
+		}
 		if (notification === "MMM_MySenseHat_PixelCpu"){
 			self.PixelCpu();
 		}
@@ -397,12 +425,13 @@ module.exports = NodeHelper.create({
 		//
 		if (notification == "MMM_MySenseHat_PixelSlide"){
 			RR = this.ColorRandom();
+			EE = this.ColorRandom();//for eyes
 			OO = [0, 0, 0];//light off,
 			const monsters = [
 				[//1
 				OO, OO, RR, RR, RR, RR, OO, OO,
 				OO, RR, RR, RR, RR, RR, RR, OO,
-				RR, RR, OO, RR, RR, OO, RR, RR,
+				RR, RR, EE, RR, RR, EE, RR, RR,
 				RR, RR, RR, RR, RR, RR, RR, RR,
 				RR, RR, RR, RR, RR, RR, RR, RR,
 				OO, RR, RR, OO, OO, RR, RR, OO,
@@ -413,7 +442,7 @@ module.exports = NodeHelper.create({
 				OO, OO, OO, OO, OO, OO, OO, OO,
 				OO, RR, RR, RR, RR, RR, RR, OO,
 				OO, RR, OO, OO, OO, OO, RR, OO,
-				OO, RR, RR, OO, OO, RR, RR, OO,
+				OO, RR, EE, OO, OO, EE, RR, OO,
 				OO, RR, OO, OO, OO, OO, RR, OO,
 				OO, RR, RR, RR, RR, RR, RR, OO,
 				RR, RR, OO, OO, OO, OO, RR, RR,
@@ -422,7 +451,7 @@ module.exports = NodeHelper.create({
 				[//3
 				OO, OO, RR, OO, OO, OO, RR, OO,
 				OO, OO, RR, RR, RR, RR, RR, OO,
-				OO, OO, RR, OO, RR, OO, RR, OO,
+				OO, OO, RR, EE, RR, EE, RR, OO,
 				OO, OO, RR, RR, RR, RR, RR, OO,
 				OO, OO, RR, RR, RR, RR, RR, OO,
 				OO, OO, RR, RR, RR, RR, RR, OO,
@@ -432,7 +461,7 @@ module.exports = NodeHelper.create({
 				[//4
 				RR, OO, OO, OO, OO, OO, OO, RR,
 				RR, RR, RR, RR, RR, RR, RR, RR,
-				RR, OO, RR, OO, OO, RR, OO, RR,
+				RR, OO, EE, OO, OO, EE, OO, RR,
 				RR, OO, OO, OO, OO, OO, OO, RR,
 				RR, RR, RR, RR, RR, RR, RR, RR,
 				OO, OO, OO, RR, RR, OO, OO, OO,
@@ -442,9 +471,9 @@ module.exports = NodeHelper.create({
 				[//5
 				OO, RR, OO, OO, OO, OO, RR, OO,
 				OO, OO, RR, OO, OO, RR, OO, OO,
-				OO, RR, OO, RR, RR, OO, RR, OO,
+				OO, RR, EE, RR, RR, EE, RR, OO,
 				OO, RR, RR, RR, RR, RR, RR, OO,
-				OO, OO, OO, RR, RR, RR, RR, OO,
+				OO, RR, OO, RR, RR, OO, RR, OO,
 				OO, OO, RR, OO, OO, RR, OO, OO,
 				OO, OO, RR, RR, RR, RR, OO, OO,
 				OO, OO, OO, RR, RR, OO, OO, OO
@@ -453,12 +482,52 @@ module.exports = NodeHelper.create({
 				RR, OO, OO, OO, OO, OO, OO, RR,
 				OO, RR, OO, OO, OO, OO, RR, OO,
 				RR, OO, RR, OO, OO, RR, OO, RR,
-				OO, RR, OO, RR, RR, OO, RR, OO,
+				OO, RR, EE, RR, RR, EE, RR, OO,
 				OO, OO, RR, OO, OO, RR, OO, OO,
 				OO, RR, OO, OO, OO, OO, RR, OO,
 				RR, RR, OO, OO, OO, OO, RR, RR,
 				OO, RR, OO, RR, RR, OO, RR, OO
-				]
+				],
+				[//7
+				OO, RR, RR, RR, RR, RR, RR, OO,
+				OO, RR, EE, RR, RR, EE, RR, OO,
+				OO, RR, RR, RR, RR, RR, RR, OO,
+				OO, RR, OO, RR, RR, OO, RR, OO,
+				RR, OO, OO, RR, RR, OO, OO, RR,
+				OO, OO, OO, RR, RR, OO, OO, OO,
+				OO, OO, OO, RR, RR, OO, OO, OO,
+				OO, OO, RR, OO, OO, RR, OO, OO
+				],
+				[//8
+				OO, RR, RR, RR, RR, RR, RR, OO,
+				OO, OO, EE, RR, RR, EE, OO, OO,
+				OO, OO, OO, RR, RR, RR, OO, OO,
+				OO, RR, OO, RR, RR, OO, RR, OO,
+				RR, OO, OO, OO, OO, OO, OO, RR,
+				OO, OO, OO, OO, OO, OO, OO, OO,
+				OO, OO, OO, RR, RR, OO, OO, OO,
+				OO, OO, RR, OO, OO, RR, OO, OO
+				],
+				[//9
+				OO, RR, RR, OO, OO, RR, RR, OO,
+				OO, RR, EE, OO, OO, EE, RR, OO,
+				OO, OO, RR, OO, OO, RR, OO, OO,
+				OO, OO, RR, OO, OO, RR, OO, OO,
+				OO, RR, RR, RR, RR, RR, RR, OO,
+				RR, OO, RR, OO, OO, RR, OO, RR,
+				OO, OO, OO, RR, RR, OO, OO, OO,
+				OO, OO, RR, OO, OO, RR, OO, OO
+				],
+				[//10
+				OO, OO, OO, OO, OO, OO, OO, OO,
+				RR, RR, RR, OO, OO, RR, RR, RR,
+				OO, OO, RR, OO, OO, RR, OO, OO,
+				RR, RR, RR, RR, RR, RR, RR, RR,
+				OO, RR, EE, RR, RR, EE, RR, OO,
+				OO, RR, RR, OO, OO, RR, RR, OO,
+				OO, RR, OO, OO, OO, OO, RR, OO,
+				RR, RR, OO, OO, OO, OO, RR, RR
+				]				
 			]
 
 		r = new Random();
