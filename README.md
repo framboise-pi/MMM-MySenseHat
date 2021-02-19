@@ -95,6 +95,9 @@ But I'm makin this module with the idea of a SenseHat in a front corner of the m
 <p>VNC screenshot - Magic Mirror Module display</p>
 <a href="https://ibb.co/JcQVydY"><img src="https://i.ibb.co/x2HWfsn/MMM-My-Sense-Hat-01.png" alt="MMM-My-Sense-Hat-01" border="0"></a>
 
+<p>VNC screenshot - Magic Mirror Module display v0.0.3 and option all sensors off</p>
+<a href="https://ibb.co/W5mYYFn"><img src="https://i.ibb.co/V9fPPDV/My-Sense-Hat-module-notallsensors.png" alt="My-Sense-Hat-module-notallsensors" border="0"></a>
+
 <p> clock example 1</p>
 <a href="https://ibb.co/jDfFqZn"><img src="https://i.ibb.co/vkq8fv0/My-Sense-Hat-clock-01.jpg" alt="My-Sense-Hat-clock-01" border="0"></a>
 
