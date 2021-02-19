@@ -92,8 +92,95 @@ At start of MagicMirror a message will display (by default : "MAGIC")
 But I'm makin this module with the idea of a SenseHat in a front corner of the mirror.
 
 # Screenshots
-<p>VNC screenshot</p>
+<p>VNC screenshot - Magic Mirror Module display</p>
 <a href="https://ibb.co/JcQVydY"><img src="https://i.ibb.co/x2HWfsn/MMM-My-Sense-Hat-01.png" alt="MMM-My-Sense-Hat-01" border="0"></a>
+
+<p> clock example 1</p>
+<a href="https://ibb.co/jDfFqZn"><img src="https://i.ibb.co/vkq8fv0/My-Sense-Hat-clock-01.jpg" alt="My-Sense-Hat-clock-01" border="0"></a>
+
+<p> clock example 2</p>
+<a href="https://ibb.co/19PZj1X"><img src="https://i.ibb.co/wKPyjVQ/My-Sense-Hat-clock-02.jpg" alt="My-Sense-Hat-clock-02" border="0"></a>
+
+<p> clock example 3</p>
+<a href="https://ibb.co/ydCtzkZ"><img src="https://i.ibb.co/xXbWngB/My-Sense-Hat-clock-03.jpg" alt="My-Sense-Hat-clock-03" border="0"></a>
+
+<p> clock example 4</p>
+<a href="https://ibb.co/Gt87m7b"><img src="https://i.ibb.co/nnYrpr5/My-Sense-Hat-clock-04.jpg" alt="My-Sense-Hat-clock-04" border="0"></a>
+
+<p> pixelart mirror mode example 1</p>
+<a href="https://ibb.co/7rHSNmB"><img src="https://i.ibb.co/SV267CH/My-Sense-Hat-mirror-01.jpg" alt="My-Sense-Hat-mirror-01" border="0"></a>
+
+<p> pixelart mirror mode example 2</p>
+<a href="https://ibb.co/dmxV44f"><img src="https://i.ibb.co/1zjPGG0/My-Sense-Hat-mirror-02.jpg" alt="My-Sense-Hat-mirror-02" border="0"></a>
+
+<p> pixelart mirror mode example 3</p>
+<a href="https://ibb.co/NsKwcjF"><img src="https://i.ibb.co/t4DyVsH/My-Sense-Hat-mirror-03.jpg" alt="My-Sense-Hat-mirror-03" border="0"></a>
+
+<p> pixelart mirror mode example 4</p>
+<a href="https://ibb.co/8cW14QP"><img src="https://i.ibb.co/X8hckGF/My-Sense-Hat-mirror-04.jpg" alt="My-Sense-Hat-mirror-04" border="0"></a>
+
+<p> pixelart mirror mode example 5</p>
+<a href="https://ibb.co/CmNMVmB"><img src="https://i.ibb.co/ydGYgd0/My-Sense-Hat-mirror-05.jpg" alt="My-Sense-Hat-mirror-05" border="0"></a>
+
+<p> pixelart mirror mode example 6</p>
+<a href="https://ibb.co/Y2RGq3F"><img src="https://i.ibb.co/gyjCB3L/My-Sense-Hat-mirror-06.jpg" alt="My-Sense-Hat-mirror-06" border="0"></a>
+
+<p> pixelart mirror mode example 7</p>
+<a href="https://ibb.co/hRTbjPY"><img src="https://i.ibb.co/5WJmyNK/My-Sense-Hat-mirror-07.jpg" alt="My-Sense-Hat-mirror-07" border="0"></a>
+
+<p> pixelart monster mode example 1</p>
+<a href="https://ibb.co/DM8TjPr"><img src="https://i.ibb.co/kD9vPVm/My-Sense-Hat-monster-01.jpg" alt="My-Sense-Hat-monster-01" border="0"></a>
+
+<p> pixelart monster mode example 2</p>
+<a href="https://ibb.co/3B1YkDK"><img src="https://i.ibb.co/5BTx2NZ/My-Sense-Hat-monster-02.jpg" alt="My-Sense-Hat-monster-02" border="0"></a>
+
+<p> pixelart monster mode example 3</p>
+<a href="https://ibb.co/gzqHKjB"><img src="https://i.ibb.co/V2nr4jP/My-Sense-Hat-monster-03.jpg" alt="My-Sense-Hat-monster-03" border="0"></a>
+
+<p> pixelart monster mode example 4</p>
+<a href="https://ibb.co/rdr3w0K"><img src="https://i.ibb.co/Hh8CH4L/My-Sense-Hat-monster-04.jpg" alt="My-Sense-Hat-monster-04" border="0"></a>
+
+<p> pixelart monster mode example 5</p>
+<a href="https://ibb.co/S7xd4sw"><img src="https://i.ibb.co/wrLwF0h/My-Sense-Hat-monster-05.jpg" alt="My-Sense-Hat-monster-05" border="0"></a>
+
+<p> pixelart monster mode example 6</p>
+<a href="https://ibb.co/YPdVKQr"><img src="https://i.ibb.co/LYgsqRG/My-Sense-Hat-monster-06.jpg" alt="My-Sense-Hat-monster-06" border="0"></a>
+
+<p> pixelart monster mode example 7</p>
+<a href="https://ibb.co/2vT3WNs"><img src="https://i.ibb.co/T4sMYLb/My-Sense-Hat-monster-07.jpg" alt="My-Sense-Hat-monster-07" border="0"></a>
+
+<p> pixelart monster mode example 8</p>
+<a href="https://ibb.co/qMnWsXr"><img src="https://i.ibb.co/zh57Rj4/My-Sense-Hat-monster-08.jpg" alt="My-Sense-Hat-monster-08" border="0"></a>
+
+<p> cpu dotline mode example 1</p>
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/zS3gmc0/My-Sense-Hat-reddot-01.jpg" alt="My-Sense-Hat-reddot-01" border="0"></a>
+
+<p> cpu dotline mode example 2</p>
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/ygfvVwC/My-Sense-Hat-reddot-02.jpg" alt="My-Sense-Hat-reddot-02" border="0"></a>
+
+<p> pixelart random mode example 1</p>
+<a href="https://ibb.co/gzzhwPT"><img src="https://i.ibb.co/722LVRW/My-Sense-Hat-rnd-01.jpg" alt="My-Sense-Hat-rnd-01" border="0"></a>
+
+<p> pixelart random mode example 2</p>
+<a href="https://ibb.co/g3yL51s"><img src="https://i.ibb.co/Qf932Bs/My-Sense-Hat-rnd-02.jpg" alt="My-Sense-Hat-rnd-02" border="0"></a>
+
+<p> pixelart random mode example 3</p>
+<a href="https://ibb.co/X8q9gBt"><img src="https://i.ibb.co/ySrD1Tq/My-Sense-Hat-rnd-03.jpg" alt="My-Sense-Hat-rnd-03" border="0"></a>
+
+<p> pixelart random mode example 4</p>
+<a href="https://ibb.co/9bNpVK3"><img src="https://i.ibb.co/Yc3NynT/My-Sense-Hat-rnd-04.jpg" alt="My-Sense-Hat-rnd-04" border="0"></a>
+
+<p> pixelart random mode example 5</p>
+<a href="https://ibb.co/5Gm9MzD"><img src="https://i.ibb.co/zQp5nLc/My-Sense-Hat-rnd-05.jpg" alt="My-Sense-Hat-rnd-05" border="0"></a>
+
+<p> pixelart random mode example 6</p>
+<a href="https://ibb.co/qm7x9Wp"><img src="https://i.ibb.co/XFjVp3t/My-Sense-Hat-rnd-06.jpg" alt="My-Sense-Hat-rnd-06" border="0"></a>
+
+<p> pixelart random mode example 7</p>
+<a href="https://ibb.co/NT6PCHR"><img src="https://i.ibb.co/bbgZm8t/My-Sense-Hat-rnd-07.jpg" alt="My-Sense-Hat-rnd-07" border="0"></a>
+
+<p> pixelart random mode example 8</p>
+<a href="https://ibb.co/F0Q1ZwR"><img src="https://i.ibb.co/Hxcywz5/My-Sense-Hat-rnd-08.jpg" alt="My-Sense-Hat-rnd-08" border="0"></a>
 
 <p>Hello World ! - module at 'middle_center' position</p>
 <a href="https://ibb.co/8YZgypY"><img src="https://i.ibb.co/Dr2fByr/MMM-My-Sense-Hat-02.png" alt="MMM-My-Sense-Hat-02" border="0"></a>
