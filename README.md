@@ -110,6 +110,9 @@ But I'm makin this module with the idea of a SenseHat in a front corner of the m
 <p> clock example 4</p>
 <a href="https://ibb.co/Gt87m7b"><img src="https://i.ibb.co/nnYrpr5/My-Sense-Hat-clock-04.jpg" alt="My-Sense-Hat-clock-04" border="0"></a>
 
+<p> sensor temp example 1</p>
+<a href="https://ibb.co/MDsYhfg"><img src="https://i.ibb.co/tM47hzH/My-Sense-Hat-sensortemp-01.jpg" alt="My-Sense-Hat-sensortemp-01" border="0"></a>
+
 <p> pixelart mirror mode example 1</p>
 <a href="https://ibb.co/7rHSNmB"><img src="https://i.ibb.co/SV267CH/My-Sense-Hat-mirror-01.jpg" alt="My-Sense-Hat-mirror-01" border="0"></a>
 
