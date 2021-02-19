@@ -46,6 +46,7 @@ modules: <span class="pl-kos">[</span>
 <span class="pl-kos">]</span>
 </pre></div>
 ----------------------------------------------------
+
 # Update
 To update MMM-MySenseHat, go to the MMM-MotionEye folder:
 
