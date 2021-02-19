@@ -86,6 +86,11 @@ At start of MagicMirror a message will display (by default : "MAGIC")
 
 <p><sup>Started in May 2020.</sup></p>
 
+# License
+MMM-MySenseHat is published under the GNU Affero 3.0 because I believe in open development. It comes with both rights and obligations. Whether you use this for your open or closed-source product, you must keep it open, and you must provide your compatible source code to end users upon request. The most straightforward way to comply with the license is to make a fork of this project on Github, perform your modifications, and direct users to your modified fork.
+
+While we can't prevent the use of this code in products that are closed source or crippled by a patent, we would prefer that you choose another code or, better yet, make your own.
+
 # And ?
 <p>My MagicMirror has been made with a display undersized, so it leaves areas to place the SenseHat in a corner, for exemple.</p>
 <p>Placed behind the mirror, it could be used to only add a colored light between the mirror and the wall, and with the MagicMirror module to display sensors info.</p>
