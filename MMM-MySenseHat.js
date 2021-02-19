@@ -3,8 +3,8 @@
 /*	Magic Mirror
  *	Module: MMM-MySenseHat
  *	https://github.com/framboise-pi/MMM-MySenseHat
- *	Copyright(C) 2020 Cedric Camille Lafontaine http://www.framboise-pi.fr,
- *	version 0.0.2
+ *	Copyright(C) 2021 Cedric Camille Lafontaine http://www.framboise-pi.fr,
+ *	version 0.0.3
  */
 
 	
@@ -45,6 +45,10 @@ Module.register("MMM-MySenseHat",{
 	},
 	//VARIABLES USED
 	round: 0,//pixelart|clock|temp value|weather|...
+	last_version: null,
+	installed: null,
+	versiontimer: true,
+	versionreturn: null,
 
 	// CSS
 	getStyles: function () {
@@ -56,13 +60,33 @@ Module.register("MMM-MySenseHat",{
 		if (this.config.display_start_LED == true) this.sendSocketNotification("MMM_MySenseHat_LoadingTxt");
 		this.askdata();
 		if (this.config.use_SenseHat_LED == true) self.autochangemode();
+		this.checkversion();
 	},
     //
+    checkversion: function(){
+		var self = this;
+		setTimeout(function() {
+			self.sendSocketNotification("MMM_MySenseHat_Version");
+		}, 5000);
+		/* OPTION to hide versions tags after 2min timeout
+		setTimeout(function(){
+			self.versiontimer = false;
+			
+		}, 120 * 1000);*/
+		
+	},
 	//AUTO CHANGE MODE
 	autochangemode: function () {
 		var self = this;
 		setInterval(function() {
 			
+			self.zeloop();
+		}, self.config.slide_interval);
+		
+	},
+	// LOOP WITHIN MODES
+	zeloop: function (){
+		var self = this;
 		self.round = self.round + 1;
 			if (self.round == 1)
 			{
@@ -103,9 +127,11 @@ Module.register("MMM-MySenseHat",{
 			{
 				if (self.config.ram_used) { 
 					self.sendSocketNotification("MMM_MySenseHat_PixelRam"); }
-				self.round = 0; 
+				else {
+					self.round = 0;
+					self.zeloop();
+				}
 			}
-		}, self.config.slide_interval);
 		
 	},
 	//ASK FOR SENSORS DATA
@@ -122,6 +148,12 @@ Module.register("MMM-MySenseHat",{
 	},
 	//
 	socketNotificationReceived: function (notification, payload) {
+		if (notification === "MMM_MySenseHat_Latest_Version"){
+			//var self = this;
+			this.last_version = payload.last_version
+			this.installed = payload.installed
+			this.versionreturn = payload.versionreturn
+		}
 		if (notification === "MMM_MySenseHat_SensorsData"){
 		//TEMP-HUMIDITY-PRESSION
 			this.SensorsData.temp = Math.round(payload.temp*100)/100
@@ -143,6 +175,7 @@ Module.register("MMM-MySenseHat",{
 	},
 	//#end socketNotif SensorsData
 	getDom: function() {
+		var self = this;
 		var wrapper = document.createElement("div");
 		wrapper.className = this.config.classes ? this.config.classes : "thin " + this.config.fontsize + " bright pre-line";
 		ihtml =  "<div class='container'>"
@@ -154,6 +187,20 @@ Module.register("MMM-MySenseHat",{
 		//ihtml += "<div class='line'><sup> fusion </sup> <i class=\"fa fa-compass\" style=\"color:#CD1C00\"></i>  " + this.SensorsData.fusix + "<sup>X</sup> | " + this.SensorsData.fusiy + "<sup>Y</sup> | " + this.SensorsData.fusiz + "<sup>Z</sup></div>"
 		ihtml += "<div class='line'><sup> gyroscope </sup> <i class=\"fa fa-arrows-alt\" style=\"color:#FAFF8E\"></i>  " + this.SensorsData.gyrox + "<sup>X</sup> | " + this.SensorsData.gyroy + "<sup>Y</sup> | " + this.SensorsData.gyroz + "<sup>Z</sup> rad/sec</div>"
 		ihtml += "<div class='line'><sup> accélération </sup> <i class=\"fa fa-dashboard\" style=\"color:#A6FF8E\"></i>  " + this.SensorsData.accex + "<sup>X</sup> | " + this.SensorsData.accey + "<sup>Y</sup> | " + this.SensorsData.accez + "<sup>Z</sup> G</div>"
+		}
+		if (this.versiontimer && this.last_version != null)
+		{
+			ihtml += "<div class='leftline'><sup> <i class=\"fa fa-github\" style=\"color:#A6FF8E\"></i>  " + self.last_version + "</sup></div>"
+			ihtml += "<div class='leftline'><sup> <i class=\"fa fa-files-o\" style=\"color:#A6FF8E\"></i>  " + self.installed + "</sup></div>"
+			if (self.versionreturn == 0){
+				ihtml += "<div class='leftline'><sup> <i class=\"fa fa-check-circle\" style=\"color:#A6FF8E\"></i> UP TO DATE </sup> </div>"
+			}
+			if (self.versionreturn == 1){
+				ihtml += "<div class='leftline'><sup> <i class=\"fa fa-plus-circle\" style=\"color:#A6FF8E\"></i> NEW version available </sup>  </div>"				
+			}
+			if (self.versionreturn == -1){
+				ihtml += "<div class='leftline'><sup> <i class=\"fa fa-user-secret\" style=\"color:#A6FF8E\"></i> DEV version ! </sup>  </div>"				
+			}
 		}
 		ihtml += "</div>"
 		wrapper.innerHTML = ihtml
