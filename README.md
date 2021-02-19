@@ -46,6 +46,12 @@ modules: <span class="pl-kos">[</span>
 <span class="pl-kos">]</span>
 </pre></div>
 ----------------------------------------------------
+# Update
+To update MMM-MySenseHat, go to the MMM-MotionEye folder:
+
+cd ~/MagicMirror/modules/MMM-MySenseHat
+git pull
+pm2 restart mm
 
 # What ?
 I didn't find any sensehat module for the wonderful MagicMirror so I'm trying to make one.
