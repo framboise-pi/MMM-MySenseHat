@@ -1,6 +1,6 @@
 # MMM-MySenseHat
 Magic Mirror Raspberry Pi Sense Hat Module
-<br>Thank you for your eventual Star on this passionated handmade script ! It's really appreciated in this dark moments :p
+<br>Please support open source coders ! It's really appreciated in this dark moments :p
 
 # Installation
 <i>Please check <a href="https://github.com/framboise-pi/MMM-MySenseHat/wiki">Wiki</a> first for any questions, or error you experience.</i>
@@ -48,7 +48,7 @@ modules: <span class="pl-kos">[</span>
 ----------------------------------------------------
 
 # Update
-To update MMM-MySenseHat, go to the MMM-MotionEye folder:
+To update MMM-MySenseHat, go to the MMM-MySenseHat folder:
 
 * cd ~/MagicMirror/modules/MMM-MySenseHat
 * git pull
