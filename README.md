@@ -58,15 +58,16 @@ To update MMM-MySenseHat, go to the MMM-MySenseHat folder:
 I didn't find any sensehat module for the wonderful MagicMirror so I'm trying to make one.
 Using java librairies. <i>I started a MagicMirror in python in parallel : MPMM (My Pi Magic Mirror), to use only python with sensehat and else, with the aim of making it working on a raspberry zero (Cause it don't work fine PiZero/MagicMirror).</i>
 
-## Modes on 8x8 LED (on interval with true/false options)
+## V0.0.3 Modes on 8x8 LED (on interval with true/false options)
 At start of MagicMirror a message will display (by default : "MAGIC")
-* 8x8 pixels little monsters (4 for the moment) -- color is random each time
+* check online  : github version of this module. Displayed : current version | installed | info "UP TO DATE" or "UPDATE AVAILABLE" or "DEV VERSION"
+* 8x8 pixels little monsters (10 for the moment) -- color is random each time
 * 8x8 clock (hours and minutes colors are random)
 * 8x8 random PixelArt -- every pixel is random
 * 8x8 random PixelArt -- vertical symmetry left/right
 * temperature sensor value with 2 random colors scale
-* cpu average load - red dot line
-* ram usage - green dot line
+* cpu average load - refreshed red dot line
+* ram usage - refreshed green dot line
 
 
 ## Modes on MagicMirror
