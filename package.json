@@ -25,7 +25,7 @@
     "getver": "^1.0.2",
     "java-random": "^0.4.0",
     "node-sense-hat": "^0.0.2",
-    "systeminformation": "^4.34.13"
+    "systeminformation": "^5.6.4"
   },
   "devDependencies": {
     "electron-rebuild": "^1.11.0"
