@@ -1,6 +1,6 @@
 {
   "name": "mmm-mysensehat",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "MagicMirror2 Raspberry Sense Hat module",
   "main": "MMM-MySenseHat.js",
   "repository": {
@@ -24,8 +24,9 @@
     "compare-versions": "^3.6.0",
     "getver": "^1.0.2",
     "java-random": "^0.4.0",
+    "node-abi": "^2.30.0",
     "node-sense-hat": "^0.0.2",
-    "systeminformation": "^4.34.13"
+    "systeminformation": "^5.7.7"
   },
   "devDependencies": {
     "electron-rebuild": "^1.11.0"
