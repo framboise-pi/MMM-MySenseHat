@@ -3,7 +3,7 @@
 //	Module: MMM-MySenseHat
 //	https://github.com/framboise-pi/MMM-MySenseHat
 //	Copyright(C) 2021 Cedric Camille Lafontaine http://www.framboise-pi.fr,
-//	version 0.0.3
+//	version 0.0.4
 //===========================
 var NodeHelper = require("node_helper");
 const request = require('request');
