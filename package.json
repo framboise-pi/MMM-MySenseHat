@@ -26,7 +26,7 @@
     "java-random": "^0.4.0",
     "node-abi": "^2.30.0",
     "node-sense-hat": "^0.0.2",
-    "systeminformation": "^5.7.7"
+    "systeminformation": "^5.21.7"
   },
   "devDependencies": {
     "electron-rebuild": "^1.11.0"
