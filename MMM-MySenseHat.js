@@ -56,7 +56,7 @@ Module.register("MMM-MySenseHat",{
 	},
 	//
 	start: function() {
-		var self = this;
+		const self = this;
 		if (this.config.display_start_LED == true) this.sendSocketNotification("MMM_MySenseHat_LoadingTxt");
 		this.askdata();
 		if (this.config.use_SenseHat_LED == true) self.autochangemode();
@@ -64,7 +64,7 @@ Module.register("MMM-MySenseHat",{
 	},
     //
     checkversion: function(){
-		var self = this;
+		const self = this;
 		setTimeout(function() {
 			self.sendSocketNotification("MMM_MySenseHat_Version");
 		}, 5000);
@@ -77,7 +77,7 @@ Module.register("MMM-MySenseHat",{
 	},
 	//AUTO CHANGE MODE
 	autochangemode: function () {
-		var self = this;
+		const self = this;
 		setInterval(function() {
 			
 			self.zeloop();
@@ -86,7 +86,7 @@ Module.register("MMM-MySenseHat",{
 	},
 	// LOOP WITHIN MODES
 	zeloop: function (){
-		var self = this;
+		const self = this;
 		self.round = self.round + 1;
 			if (self.round == 1)
 			{
@@ -136,7 +136,7 @@ Module.register("MMM-MySenseHat",{
 	},
 	//ASK FOR SENSORS DATA
 	askdata: function () {
-		var self = this;
+		const self = this;
 		setInterval(function() {
 			self.sendSocketNotification("MMM_MySenseHat_ReadSensors");
 			self.updateDom();
@@ -175,10 +175,10 @@ Module.register("MMM-MySenseHat",{
 	},
 	//#end socketNotif SensorsData
 	getDom: function() {
-		var self = this;
-		var wrapper = document.createElement("div");
+		const self = this;
+		const wrapper = document.createElement("div");
 		wrapper.className = this.config.classes ? this.config.classes : "thin " + this.config.fontsize + " bright pre-line";
-		ihtml =  "<div class='container'>"
+	  let ihtml =  "<div class='container'>"
 		ihtml += "<div class='line'><sup> humidité </sup> <i class=\"fa fa-tint\" style=\"color:#50FCFF\"></i> " + this.SensorsData.humi + " %</div>"
 		ihtml += "<div class='line'><sup> température </sup> <i class=\"fa fa-thermometer-empty\" style=\"color:#FF8A50\"></i> " + this.SensorsData.temp + " °C</div>"
 		ihtml += "<div class='line'><sup> pression </sup> <i class=\"fa fa-cloud\" style=\"color:#EFEFEF\"></i> " + this.SensorsData.press + " mbar</div>"

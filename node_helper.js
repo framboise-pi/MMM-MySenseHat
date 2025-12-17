@@ -5,29 +5,26 @@
 //	Copyright(C) 2021 Cedric Camille Lafontaine http://www.framboise-pi.fr,
 //	version 0.0.4
 //===========================
-var NodeHelper = require("node_helper");
-const request = require('request');
+const NodeHelper = require("node_helper");
 const sense = require('sense-hat-led').sync;
-const imu = require('node-sense-hat').Imu;
-const IMU = new imu.IMU();
-var Random = require('java-random');
+const SenseHatSensors = require('./sensehat-sensors');
 const si = require('systeminformation');
-var compareVersions = require('compare-versions');
+const compareVersions = require('compare-versions');
 
 // ORIENTATION
 sense.clear();
 sense.setRotation(90);
 sense.lowLight = true;
 
-color1 = [255,0,0];
-color2 = [0,255,0,0];
-//
-
 
 module.exports = NodeHelper.create({
 
 	start: function() {
-
+		// Initialize sensor instance
+		this.sensors = new SenseHatSensors();
+		this.sensorsInitialized = false;
+		this.color1 = [255, 0, 0];
+		this.color2 = [0, 255, 0];
 	},
 //
 //
@@ -81,12 +78,11 @@ module.exports = NodeHelper.create({
 	},
 //
 	getdigit: function(num, place){
-
-		var self = this;
-		if (place <= 2) { o = self.color1;}
-		if (place >= 3)	{ o = self.color2;}
-		x = [0, 0, 0];//light off
-		digits = [
+		let o;
+		if (place <= 2) { o = this.color1;}
+		if (place >= 3)	{ o = this.color2;}
+		const x = [0, 0, 0];//light off
+		const digits = [
 			[[x,x,x,x],[x,o,o,o],[x,o,x,o],[x,o,o,o],],
 			[[x,o,o,x],[x,x,o,x],[x,x,o,x],[x,x,o,x],],
 			[[x,o,o,x],[x,x,x,o],[x,x,o,x],[x,o,o,o],],
@@ -102,53 +98,48 @@ module.exports = NodeHelper.create({
 	},
 //	
 	clock: function(){
-    let time_now = Date.now();
-    date_now = new Date(time_now);
-    now_minutes = date_now.getMinutes();
-	now_hours = date_now.getHours();
-	this.color1 = this.ColorRandom();
-	this.color2 = this.ColorRandom();
-	ab = "" + now_hours;
-	cd = "" + now_minutes;
-	if (parseInt(ab) <= 10) ab = "0" + now_hours;
-	if (parseInt(cd) <= 10) cd = "0" + now_minutes;
-	now_array = [
-		ab.slice(0,1),
-		ab.slice(1,2),
-		cd.slice(0,1),
-		cd.slice(1,2),
+		const time_now = Date.now();
+		const date_now = new Date(time_now);
+		const now_minutes = date_now.getMinutes();
+		const now_hours = date_now.getHours();
+		this.color1 = this.ColorRandom();
+		this.color2 = this.ColorRandom();
+		let ab = "" + now_hours;
+		let cd = "" + now_minutes;
+		if (parseInt(ab) <= 10) ab = "0" + now_hours;
+		if (parseInt(cd) <= 10) cd = "0" + now_minutes;
+		const now_array = [
+			ab.slice(0,1),
+			ab.slice(1,2),
+			cd.slice(0,1),
+			cd.slice(1,2),
 		]
-	this.clockclock(now_array);
+		this.clockclock(now_array);
 	},
 //
 	ColorRandom: function(payload){
-		ra = new Random();
-		randomeda = ra.nextInt(256);
-		rb = new Random();
-		randomedb = rb.nextInt(256);
-		rc = new Random();
-		randomedc = rc.nextInt(256);
-		randomed = [randomeda,randomedb,randomedc];
-		return randomed;
+		const randomeda = Math.floor(Math.random() * 256);
+		const randomedb = Math.floor(Math.random() * 256);
+		const randomedc = Math.floor(Math.random() * 256);
+		return [randomeda, randomedb, randomedc];
 	},
 //
 	PixelTemp: function(value_temp){
 		// maintain red for temp
-		var self = this;
-		colora = this.ColorRandom();
+		const colora = this.ColorRandom();
 		if (colora[0] >= 51) { colora[0] = 50 } 
-		colorb = this.ColorRandom();
+		const colorb = this.ColorRandom();
 		colorb[0] = 255;
-		array_pixel = [];
-		array_case = -1;
-		value_int = parseInt(value_temp);
+		const array_pixel = [];
+		let array_case = -1;
+		let value_int = parseInt(value_temp);
 		if (value_int > 64) { 
-			self.PixelExclamation();
+			this.PixelExclamation();
 			return;
-			}
+		}
 		value_int = 64 - value_int;
-		for(var i = 0; i < 64;i++){
-			colori = colora;
+		for(let i = 0; i < 64; i++){
+		let colori = colora;
 			if (i >= value_int) { colori = colorb; }
 			array_case = array_case + 1;
 			array_pixel[array_case] = colori;
@@ -159,8 +150,8 @@ module.exports = NodeHelper.create({
 	},
 //
 	PixelExclamation: function(){
-		RR = this.ColorRandom();
-		OO = [0,0,0];
+		const RR = this.ColorRandom();
+		const OO = [0,0,0];
 		const exclamation = [
 			OO, OO, OO, RR, RR, OO, OO, OO,
 			OO, OO, OO, RR, RR, OO, OO, OO,
@@ -178,9 +169,9 @@ module.exports = NodeHelper.create({
 //
 //
 	MakeRandomPixelArt: function(){
-		array_pixel = [];
-		array_case = -1;
-		for(var i = 0; i < 64;i++){
+		const array_pixel = [];
+		let array_case = -1;
+		for(let i = 0; i < 64; i++){
 			array_case = array_case + 1;
 			array_pixel[array_case] = this.ColorRandom();
 			
@@ -191,18 +182,18 @@ module.exports = NodeHelper.create({
 //
 	PixelCpu: function(){
 		sense.clear();
-		cpu_load = null;
+		let cpu_load = null;
 
-		red = [255,0,0];
-		x = -1;
-		y = 0;
-		timerCpu = setInterval(function() {
+		const red = [255,0,0];
+		let x = -1;
+		let y = 0;
+		const timerCpu = setInterval(function() {
 			si.currentLoad(data => {
 			  cpu_load = data.currentload;
 			});
 			if (!cpu_load) return;
 			x = x+1;
-			percent = cpu_load;
+			let percent = cpu_load;
 			percent = Math.round(percent*100)/100
 			if (percent <= 12) { y = 7;  red[0] = 100;}
 			if (percent > 12 && percent <= 25) { y = 6; red[0] = 120;}
@@ -225,18 +216,18 @@ module.exports = NodeHelper.create({
 //
 	PixelRam: function(){
 		sense.clear();
-		ram_total = 0;
-		ram_free = 0;
+		let ram_total = 0;
+		let ram_free = 0;
 
-		green = [0,255,0];
-		x = -1;
-		y = 0;
-		timerRam = setInterval(function() {
+		const green = [0,255,0];
+		let x = -1;
+		let y = 0;
+		const timerRam = setInterval(function() {
 			si.mem(data => {
 			  ram_free = data.available;// closest to lxtask values
 			  ram_total = data.total;
 			});
-			percent = (ram_free * 100) / ram_total;
+			let percent = (ram_free * 100) / ram_total;
 			percent = Math.round(percent*100)/100
 			if (!percent) return;
 			x = x+1;
@@ -259,52 +250,52 @@ module.exports = NodeHelper.create({
 	},
 //
 	MakeRandomPixelArtV: function(){
-		array_pixel = [];
-		array_case = -1;
+		const array_pixel = [];
+		let array_case = -1;
 		
-		for(var i=0; i < 4;i++){//0to7
+		for(let i=0; i < 4; i++){//0to7
 			array_case = array_case + 1;
 			array_pixel[array_case] = this.ColorRandom();
 			array_pixel[7-array_case] = array_pixel[array_case];
 		}
 		array_case = 7;
-		for(var i=0; i < 4;i++){//8to15
+		for(let i=0; i < 4; i++){//8to15
 			array_case = array_case + 1;
 			array_pixel[array_case] = this.ColorRandom();
 			array_pixel[23-array_case] = array_pixel[array_case];
 		}
 		array_case = 15;
-		for(var i=0; i < 4;i++){//16to23
+		for(let i=0; i < 4; i++){//16to23
 			array_case = array_case + 1;
 			array_pixel[array_case] = this.ColorRandom();
 			array_pixel[39-array_case] = array_pixel[array_case];
 		}	
 		array_case = 23;
-		for(var i=0; i < 4;i++){//24to31
+		for(let i=0; i < 4; i++){//24to31
 			array_case = array_case + 1;
 			array_pixel[array_case] = this.ColorRandom();
 			array_pixel[55-array_case] = array_pixel[array_case];
 		}		
 		array_case = 31;
-		for(var i=0; i < 4;i++){//32to39
+		for(let i=0; i < 4; i++){//32to39
 			array_case = array_case + 1;
 			array_pixel[array_case] = this.ColorRandom();
 			array_pixel[71-array_case] = array_pixel[array_case];
 		}			
 		array_case = 39;
-		for(var i=0; i < 4;i++){//40to47
+		for(let i=0; i < 4; i++){//40to47
 			array_case = array_case + 1;
 			array_pixel[array_case] = this.ColorRandom();
 			array_pixel[87-array_case] = array_pixel[array_case];
 		}			
 		array_case = 47;
-		for(var i=0; i < 4;i++){//48to55
+		for(let i=0; i < 4; i++){//48to55
 			array_case = array_case + 1;
 			array_pixel[array_case] = this.ColorRandom();
 			array_pixel[103-array_case] = array_pixel[array_case];
 		}		
 		array_case = 55;
-		for(var i=0; i < 4;i++){//56to63
+		for(let i=0; i < 4; i++){//56to63
 			array_case = array_case + 1;
 			array_pixel[array_case] = this.ColorRandom();
 			array_pixel[119-array_case] = array_pixel[array_case];
@@ -319,29 +310,39 @@ module.exports = NodeHelper.create({
 	},
 //
 	socketNotificationReceived: function (notification, payload) {
-		//
-		var self = this;
+		const self = this;
 
 		if (notification === "MMM_MySenseHat_Version"){
-			var getver = require('getver');
-
-			getver({
-			  username: 'framboise-pi',
-			  repo: 'MMM-MySenseHat'
-			}, function(err, version, pkg) {
-			  //console.log(err); // null or Error
-			  //console.log(version); // string containing version, i.e. "1.0.0"
-			  //console.log(pkg); // object containing entire package.json
-				current = require('./package.json');
-				//***return 1:new available / 0: same as github// -1: dev version
-				var versionreturn = compareVersions(version, current.version);
-				payload = {
-					last_version: version,
-					installed: current.version,
-					versionreturn: versionreturn
-					};
-				self.sendlatestversion(payload);
-				});//end function
+			const https = require('https');
+			
+			https.get('https://raw.githubusercontent.com/framboise-pi/MMM-MySenseHat/master/package.json', (res) => {
+				let data = '';
+				
+				res.on('data', (chunk) => {
+					data += chunk;
+				});
+				
+				res.on('end', () => {
+					try {
+						const pkg = JSON.parse(data);
+						const version = pkg.version;
+						const current = require('./package.json');
+						
+						// Return 1: new available / 0: same as github / -1: dev version
+						const versionreturn = compareVersions(version, current.version);
+						const payload = {
+							last_version: version,
+							installed: current.version,
+							versionreturn: versionreturn
+						};
+						self.sendlatestversion(payload);
+					} catch (err) {
+						console.error('Failed to check version:', err);
+					}
+				});
+			}).on('error', (err) => {
+				console.error('Failed to fetch version from GitHub:', err);
+			});
 		}
 		if (notification === "MMM_MySenseHat_PixelCpu"){
 			self.PixelCpu();
@@ -372,61 +373,23 @@ module.exports = NodeHelper.create({
 		}
 		//
 		if (notification === "MMM_MySenseHat_ReadSensors"){
-			IMU.getValue((err, data) => {
-				if (err !== null) {
-				return;
-				}
-				//JSON-string
-				accejson = JSON.stringify(data.accel, null, "  ");
-				gyrojson = JSON.stringify(data.gyro, null, "  ");
-				compjson = JSON.stringify(data.compass, null, "  ");
-				//ACCEL separate 3 informations
-				accejson = accejson.replace(new RegExp(':','g'),"");
-				accejson = accejson.replace(new RegExp('{','g'),"");
-				accejson = accejson.replace(new RegExp('}','g'),"");
-				acceList = accejson.split(",");
-				acce_x = acceList[0].substring(6);
-				acce_y = acceList[1].substring(6);
-				acce_z = acceList[2].substring(6);
-				//GYROSCOPE separate 3 informations
-				gyrojson = gyrojson.replace(new RegExp(':','g'),"");
-				gyrojson = gyrojson.replace(new RegExp('{','g'),"");
-				gyrojson = gyrojson.replace(new RegExp('}','g'),"");
-				gyroList = gyrojson.split(",");
-				gyro_x = gyroList[0].substring(6);
-				gyro_y = gyroList[1].substring(6);
-				gyro_z = gyroList[2].substring(6);
-				//COMPASS separate 3 informations
-				compjson = compjson.replace(new RegExp(':','g'),"");
-				compjson = compjson.replace(new RegExp('{','g'),"");
-				compjson = compjson.replace(new RegExp('}','g'),"");
-				compList = compjson.split(",");
-				comp_x = compList[0].substring(6);
-				comp_y = compList[1].substring(6);
-				comp_z = compList[2].substring(6);
-			  //
-			  payload= {
-				  temp: data.temperature,
-				  humi: data.humidity,
-				  press: data.pressure,
-				  accex: acce_x,
-				  accey: acce_y,
-				  accez: acce_z,
-				  gyrox: gyro_x,
-				  gyroy: gyro_y,
-				  gyroz: gyro_z,
-				  compx: comp_x,
-				  compy: comp_y,
-				  compz: comp_z
-				}//#end payload
-				this.sendSocketNotification('MMM_MySenseHat_SensorsData',payload);
-			});
+			// Initialize sensors if not already done
+			if (!this.sensorsInitialized) {
+				this.sensors.init().then(() => {
+					this.sensorsInitialized = true;
+					this.readSensorData();
+				}).catch((err) => {
+					console.error('Failed to initialize sensors:', err);
+				});
+			} else {
+				this.readSensorData();
+			}
 		}//#end if SensorsData
 		//
 		if (notification == "MMM_MySenseHat_PixelSlide"){
-			RR = this.ColorRandom();
-			EE = this.ColorRandom();//for eyes
-			OO = [0, 0, 0];//light off,
+			const RR = this.ColorRandom();
+			const EE = this.ColorRandom();//for eyes
+			const OO = [0, 0, 0];//light off,
 			const monsters = [
 				[//1
 				OO, OO, RR, RR, RR, RR, OO, OO,
@@ -530,10 +493,31 @@ module.exports = NodeHelper.create({
 				]				
 			]
 
-		r = new Random();
-		randomed = r.nextInt(monsters.length);
-		sense.setPixels(monsters[randomed]);
+			const randomed = Math.floor(Math.random() * monsters.length);
+			sense.setPixels(monsters[randomed]);
 		}//#end if SlidePixel
-	}//#end socketNotificationReceived
+	},//#end socketNotificationReceived
+
+	readSensorData: function() {
+		this.sensors.getValue().then((data) => {
+			const payload = {
+				temp: data.temperature,
+				humi: data.humidity,
+				press: data.pressure,
+				accex: data.accel.x.toFixed(4),
+				accey: data.accel.y.toFixed(4),
+				accez: data.accel.z.toFixed(4),
+				gyrox: data.gyro.x.toFixed(4),
+				gyroy: data.gyro.y.toFixed(4),
+				gyroz: data.gyro.z.toFixed(4),
+				compx: data.compass.x.toFixed(4),
+				compy: data.compass.y.toFixed(4),
+				compz: data.compass.z.toFixed(4)
+			};
+			this.sendSocketNotification('MMM_MySenseHat_SensorsData', payload);
+		}).catch((err) => {
+			console.error('Failed to read sensor data:', err);
+		});
+	}
 	
 });

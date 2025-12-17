@@ -5,19 +5,40 @@ Magic Mirror Raspberry Pi Sense Hat Module
 # Installation
 <i>Please check <a href="https://github.com/framboise-pi/MMM-MySenseHat/wiki">Wiki</a> first for any questions, or error you experience.</i>
 
-## I. First Step
-<p>Run these commands at your Magic Mirror root directory.</p>
+## I. Prerequisites
 
-<div>
- <code><p>cd ~/MagicMirror/modules</p>
-<p> git clone https://github.com/framboise-pi/MMM-MySenseHat.git</p></code>
-</div>
-<div>
- <p>This command with MMM-MySenseHat folder (this will install dependencies)</p>
-<code>npm install</code>
-</div>
+**Important:** This module requires a Raspberry Pi with a Sense HAT attached.
 
-## II. Second Step
+### Python Dependencies
+This module uses the official Raspberry Pi Sense HAT Python library. Install it first:
+
+```bash
+sudo apt-get update
+sudo apt-get install -y sense-hat python3-sense-hat
+```
+
+**Note:** The `python3-sense-hat` package is only available on Raspberry Pi OS. If the Python library is not installed, the sensor script will generate random mock data instead of real sensor readings (useful for development/testing without hardware).
+
+## II. Install Module
+
+Run these commands at your Magic Mirror root directory:
+
+```bash
+cd ~/MagicMirror/modules
+git clone https://github.com/framboise-pi/MMM-MySenseHat.git
+cd MMM-MySenseHat
+npm install
+```
+
+**No native Node.js modules required!** This version uses:
+- Python `sense_hat` library for sensors (official Raspberry Pi library)
+- JavaScript `sense-hat-led` for LED matrix control (pure JavaScript, no compilation needed)
+
+✅ No `electron-rebuild` necessary  
+✅ No C++ compilation  
+✅ Works out of the box after `npm install`
+
+## III. Configuration
 <p>edit your config.js file from MagicMirror config folder</p>
 <div class="highlight highlight-source-js"><pre>  
 //////////////////////
@@ -50,13 +71,37 @@ modules: <span class="pl-kos">[</span>
 # Update
 To update MMM-MySenseHat, go to the MMM-MySenseHat folder:
 
-* cd ~/MagicMirror/modules/MMM-MySenseHat
-* git pull
-* pm2 restart mm
+```bash
+cd ~/MagicMirror/modules/MMM-MySenseHat
+git pull
+npm install
+pm2 restart mm
+```
+
+# Testing
+
+Test the Python sensor script directly:
+
+```bash
+cd ~/MagicMirror/modules/MMM-MySenseHat
+python3 read_sensors.py
+```
+
+This should output sensor data as JSON. If you're not on a Raspberry Pi with Sense HAT, it will output mock data for development.
+
+# Technical Details
+
+This module has been modernized to eliminate native Node.js modules:
+
+- **Sensors**: Uses official Python `sense_hat` library via `child_process`
+- **LED Matrix**: Uses `sense-hat-led` (pure JavaScript, direct framebuffer access)
+- **No Compilation**: No `electron-rebuild` or C++ compilation required
+- **Easy Updates**: Just `git pull && npm install`
 
 # What ?
 I didn't find any sensehat module for the wonderful MagicMirror so I'm trying to make one.
-Using java librairies. <i>I started a MagicMirror in python in parallel : MPMM (My Pi Magic Mirror), to use only python with sensehat and else, with the aim of making it working on a raspberry zero (Cause it don't work fine PiZero/MagicMirror).</i>
+
+<i>This version has been updated to use the official Python sense_hat library instead of deprecated native Node.js modules.</i>
 
 ## V0.0.3 Modes on 8x8 LED (on interval with true/false options)
 At start of MagicMirror a message will display (by default : "MAGIC")
